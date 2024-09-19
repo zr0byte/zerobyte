@@ -1,0 +1,10 @@
+
+.wallet-adapter-modal {
+    z-index: 9999 !important;
+}
+.wallet-adapter-button, .custom-wallet-button {
+    height: 2.25rem;        
+    border-radius: 0.375rem;
+    padding-left: 0.75rem;  
+    padding-right: 0.75rem;
+}

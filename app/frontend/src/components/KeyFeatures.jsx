@@ -1,12 +1,12 @@
 import React from 'react'
-import { GlowingStarsBgCard } from './GlowingStarsBgCard'
+import { FeaturesSectionDemo } from './HoverCard'
 
 const KeyFeatures = () => {
   return (
     <div className='h-screen z-20 flex flex-col items-center bg-white dark:bg-black w-full'>
-        <h1 className='dark:text-white text-black text-6xl font-bold my-8'>Key Features</h1>
+        <h1 className='dark:text-white text-black text-6xl font-bold my-8'>Features</h1>
         <div>
-            <GlowingStarsBgCard />
+            <FeaturesSectionDemo />
         </div>
     </div>
   )

@@ -41,23 +41,22 @@ function PricingTab(props) {
 
 export default function PricingTable() {
   return (
-    <div className="flex items-center justify-center mt-20 lg:w-[30%] md:w-[80%] sm:w-[90%]">
+    <div className="flex items-center justify-center mt-8 lg:w-[30%] md:w-[80%] sm:w-[90%]">
       <div className="max-w-sm mx-auto grid gap-6 items-start lg:max-w-none">
 
         {/* Pricing tab 1 */}
         <PricingTab
           planName="Free Plan"
           price={"0"}
-          planDescription="Start with our free plan—ideal for individuals and small teams. Explore essential tools at no cost."
+          planDescription="Unlock private transactions and essential privacy tools for free. Ideal for users new to Web3 privacy protection."
           features={[
-            'Unlimited credential verifications',
-            'Basic privacy features',
-            'Access to community support',
-            'Integration with Phantom Wallet',
-            'Zero-knowledge proof generation',
+            'Private transactions with zero-knowledge proofs',
+            'Basic privacy-preserving identity management',
+            'Seamless integration with Phantom Wallet',
+            'Access to community and knowledge base',
+            'End-to-end encryption for transaction data',
           ]}
         />
-
       </div>
     </div>
   )

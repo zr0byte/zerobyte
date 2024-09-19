@@ -7,8 +7,7 @@ const Features = () => {
         <div className='dark:bg-black bg-white w-full flex flex-col min-h-screen'>
             <Header />
             <div className='mx-60 my-auto'>
-
-            <h1 className='text-black dark:text-white'>Features Page</h1>
+                <h1 className='text-black dark:text-white'>Features Page</h1>
             </div>
             <Footer />
         </div>
