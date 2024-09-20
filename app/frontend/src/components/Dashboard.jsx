@@ -1,27 +1,29 @@
-// App.jsx remains the same as in the previous example
-
-// Dashboard.jsx
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useWallet, useConnection } from '@solana/wallet-adapter-react';
 import { Wallet } from './AppWalletProvider';
-
+import { toast } from "sonner";
+import { ArrowRight } from 'lucide-react';
 import { Spinner } from './Spinner';
+import Logo from './Logo';
+import { ModeToggle } from './mode-toogle';
+import { Footer } from './Footer';
+import { LAMPORTS_PER_SOL } from '@solana/web3.js';
+import BalanceCard from './BalanceCard';
+import { Button } from './ui/button';
+import TransactionView from './TransactionView';
 
-const CONNECTION_TIMEOUT = 15000; // 15 seconds timeout
 
-const Dashboard = () => {
+
+const Dashboard = ({ CONNECTION_TIMEOUT }) => {
     const { publicKey, connected } = useWallet();
     const { connection } = useConnection();
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
-    const [connectionError, setConnectionError] = useState(null);
+    const [balance, setBalance] = useState(null)
 
     useEffect(() => {
         const checkConnectionAndWallet = async () => {
-            setIsLoading(true);
-            setConnectionError(null);
-
             if (!connected) {
                 navigate('/');
                 return;
@@ -31,8 +33,10 @@ const Dashboard = () => {
                 // Check if we can reach the Solana network
                 await Promise.race([
                     connection.getLatestBlockhash(),
-                    new Promise((_, reject) => 
+                    new Promise((_, reject) => {
                         setTimeout(() => reject(new Error('Connection timeout')), CONNECTION_TIMEOUT)
+                        console.log(CONNECTION_TIMEOUT);
+                    }
                     )
                 ]);
 
@@ -40,30 +44,58 @@ const Dashboard = () => {
                 setIsLoading(false);
             } catch (error) {
                 console.error('Connection error:', error);
-                setConnectionError('Failed to connect to the Solana network. Please check your internet connection and try again.');
-                setIsLoading(false);
+                toast.error("Failed to connect to the Solana network. Please check your internet connection and try again.");
+                navigate('/');
             }
         };
-
         checkConnectionAndWallet();
-    }, [connected, connection, navigate]);
+
+        const fetchBalance = async () => {
+            if (connected && publicKey) {
+                try {
+                    const balance = await connection.getBalance(publicKey);
+                    const balanceInSol = balance / LAMPORTS_PER_SOL;
+                    setBalance(`${balanceInSol} SOL`)
+                    console.log(balanceInSol);
+                } catch (error) {
+                    console.error("Failed to fetch balance", error)
+                }
+            }
+        }
+        fetchBalance()
+    }, [connected, connection, publicKey, navigate]);
+
+    if (!connected) {
+        return null; // This will prevent rendering anything if not connected
+    }
 
     if (isLoading) {
         return <Spinner />;
     }
 
-    if (connectionError) {
-        return <div className="text-red-500 text-center p-4">{connectionError}</div>;
-    }
-
     return (
-        <div className='dark:bg-black bg-white w-full flex flex-col min-h-screen'>
-            <div className='flex flex-col justify-center mt-20 items-center'>
-                <h1 className='text-black dark:text-white mt-auto text-6xl font-bold'>Dashboard</h1>
+        <div className='dark:bg-black bg-white w-full flex flex-col min-h-screen relative'>
+            <div className='flex justify-between items-center z-10 py-5 px-60 sticky top-0 bg-white/30 dark:bg-black/30 backdrop-blur-md'>
                 <div>
+                    <Logo position={"top"} />
+                </div>
+                <div className='space-x-6'>
                     <Wallet />
+                    <ModeToggle />
                 </div>
             </div>
+            <div className='px-60 h-screen flex flex-col justify-start items-center mt-20'>
+                <div>
+                    {/* <h1 className='text-black dark:text-white mt-20 text-2xl font-semibold'>Your Private DeFi Space</h1> */}
+                </div>
+                <div className='w-1/3'>
+                    {/* <h2 className='text-black dark:text-white'>{balance}</h2> */}
+                    <BalanceCard balance={balance}/>
+                    <Button className="w-full my-5">New Private Transfer <ArrowRight className='ml-3' size={20} /></Button>
+                    <TransactionView />
+                </div>
+            </div>
+            <Footer />
         </div>
     );
 };
