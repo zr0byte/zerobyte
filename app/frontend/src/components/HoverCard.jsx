@@ -1,20 +1,14 @@
 import { cn } from "@/lib/utils";
 import {
-  IconAdjustmentsBolt,
-  IconCloud,
-  IconCurrencyDollar,
-  IconEaseInOut,
   IconHeart,
-  IconHelp,
-  IconRouteAltLeft,
-  IconTerminal2,
   IconLockFilled,
   IconShieldLockFilled,
   IconUserScan,
   IconKeyFilled,
   IconFingerprint,
   IconPointer,
-  IconBellRingingFilled
+  IconBellRingingFilled,
+  IconWallet
 } from "@tabler/icons-react";
 
 export function FeaturesSectionDemo() {
@@ -45,7 +39,7 @@ export function FeaturesSectionDemo() {
     {
       title: "Secure Wallet Integration",
       description: "Seamlessly integrate with secure wallets for managing private transactions.",
-      icon: <IconFingerprint />,
+      icon: <IconWallet />,
     },
     {
       title: "User-Friendly Interface",
@@ -60,8 +54,8 @@ export function FeaturesSectionDemo() {
       icon: <IconBellRingingFilled />,
     },
     {
-      title: "And everything else",
-      description: "I just ran out of copy ideas. Accept my sincere apologies",
+      title: "And Moreeeeee....",
+      description: "We are working on more cool features. Stay tuned.",
       icon: <IconHeart />,
     },
   ];

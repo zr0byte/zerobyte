@@ -20,6 +20,10 @@ import { Spinner } from "./components/Spinner.jsx";
 import '@solana/wallet-adapter-react-ui/styles.css';
 import './components/custom-wallet-modal.css'
 import { Toaster, toast } from "sonner";
+import NewTransaction from "./components/NewTransaction.jsx";
+import ReceiverView from "./components/ReceiverView.jsx";
+import ReviewCard from "./components/ReviewCard.jsx";
+import ZKPGenerateView from "./components/ZKPGenerateView.jsx";
 const CONNECTION_TIMEOUT = 15000; // 15 seconds timeout
 
 const WalletConnectionWrapper = ({ children }) => {
@@ -40,7 +44,7 @@ const WalletConnectionWrapper = ({ children }) => {
           )
         ]);
         console.log(connection);
-        if (connected && location.pathname !== '/app') {
+        if (connected && location.pathname === '/') {
           navigate('/app');
         }
       } catch (error) {
@@ -62,18 +66,33 @@ const WalletConnectionWrapper = ({ children }) => {
   return children;
 };
 
-const AppRoutes = () => {
+const ProtectedRoute = ({ children }) => {
   const { connected } = useWallet();
+  const location = useLocation();
+
+  if (!connected) {
+    return <Navigate to="/" state={{ from: location }} replace />;
+  }
+
+  return children;
+};
+
+const AppRoutes = () => {
+  // const { connected } = useWallet();
 
   return (
     <WalletConnectionWrapper>
       <Routes>
-        <Route path="/" element={connected ? <Navigate to="/app" replace /> : <HomePage />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/features" element={<Features />} />
         <Route path="/how-it-works" element={<HowItWorks />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/docs" element={<Docs />} />
-        <Route path="/app" element={<Dashboard CONNECTION_TIMEOUT={CONNECTION_TIMEOUT} />} />
+        <Route path="/app" element={<ProtectedRoute><Dashboard CONNECTION_TIMEOUT={CONNECTION_TIMEOUT} /></ProtectedRoute>} />
+        <Route path="/app/step-1" element={<ProtectedRoute><NewTransaction /></ProtectedRoute>} />
+        <Route path="/app/step-2" element={<ProtectedRoute><ReceiverView /></ProtectedRoute>} />
+        <Route path="/app/review-transaction" element={<ProtectedRoute><ReviewCard /></ProtectedRoute>} />
+        <Route path="/app/smart-contract-generate" element={<ProtectedRoute><ZKPGenerateView /></ProtectedRoute>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </WalletConnectionWrapper>

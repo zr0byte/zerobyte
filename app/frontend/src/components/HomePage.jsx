@@ -6,6 +6,7 @@ import { Footer } from './Footer'
 import OurTeam from './OurTeam'
 import NewsLetter from './NewsLetter'
 import Hero2 from './Hero2'
+import Savage from './Savage'
 
 const HomePage = () => {
     return (
@@ -15,7 +16,8 @@ const HomePage = () => {
             <KeyFeatures />
             <Faqs />
             <OurTeam />
-            <NewsLetter />
+            {/* <NewsLetter />  Will implement later */} 
+            <Savage />
             <Footer />
         </div>
     )

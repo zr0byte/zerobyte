@@ -1,9 +1,9 @@
 import React from 'react'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './ui/card'
 
-const TransactionView = ({ balance }) => {
+const TransactionView = () => {
     return (
-        <div className='w-full'>
+        <div className='w-full my-5'>
             <Card>
                 <CardHeader>
                     <CardTitle>

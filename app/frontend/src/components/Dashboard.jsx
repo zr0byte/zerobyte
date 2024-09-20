@@ -13,8 +13,6 @@ import BalanceCard from './BalanceCard';
 import { Button } from './ui/button';
 import TransactionView from './TransactionView';
 
-
-
 const Dashboard = ({ CONNECTION_TIMEOUT }) => {
     const { publicKey, connected } = useWallet();
     const { connection } = useConnection();
@@ -30,17 +28,13 @@ const Dashboard = ({ CONNECTION_TIMEOUT }) => {
             }
 
             try {
-                // Check if we can reach the Solana network
                 await Promise.race([
                     connection.getLatestBlockhash(),
                     new Promise((_, reject) => {
                         setTimeout(() => reject(new Error('Connection timeout')), CONNECTION_TIMEOUT)
                         console.log(CONNECTION_TIMEOUT);
-                    }
-                    )
+                    })
                 ]);
-
-                // If we reach here, the connection is successful
                 setIsLoading(false);
             } catch (error) {
                 console.error('Connection error:', error);
@@ -63,11 +57,7 @@ const Dashboard = ({ CONNECTION_TIMEOUT }) => {
             }
         }
         fetchBalance()
-    }, [connected, connection, publicKey, navigate]);
-
-    if (!connected) {
-        return null; // This will prevent rendering anything if not connected
-    }
+    }, [connected, connection, publicKey, navigate, CONNECTION_TIMEOUT]);
 
     if (isLoading) {
         return <Spinner />;
@@ -85,13 +75,11 @@ const Dashboard = ({ CONNECTION_TIMEOUT }) => {
                 </div>
             </div>
             <div className='px-60 h-screen flex flex-col justify-start items-center mt-20'>
-                <div>
-                    {/* <h1 className='text-black dark:text-white mt-20 text-2xl font-semibold'>Your Private DeFi Space</h1> */}
-                </div>
                 <div className='w-1/3'>
-                    {/* <h2 className='text-black dark:text-white'>{balance}</h2> */}
-                    <BalanceCard balance={balance}/>
-                    <Button className="w-full my-5">New Private Transfer <ArrowRight className='ml-3' size={20} /></Button>
+                    <BalanceCard balance={balance} />
+                    <Button className="w-full my-5" onClick={() => navigate("/app/step-1")}>
+                        New Private Transfer <ArrowRight className='ml-3' size={20} />
+                    </Button>
                     <TransactionView />
                 </div>
             </div>
