@@ -13,6 +13,11 @@ import BalanceCard from './BalanceCard';
 import { Button } from './ui/button';
 import TransactionView from './TransactionView';
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> bc7a96a (Integerate solana wallet, UI improvements and error handling)
 const Dashboard = ({ CONNECTION_TIMEOUT }) => {
     const { publicKey, connected } = useWallet();
     const { connection } = useConnection();
@@ -33,7 +38,12 @@ const Dashboard = ({ CONNECTION_TIMEOUT }) => {
                     new Promise((_, reject) => {
                         setTimeout(() => reject(new Error('Connection timeout')), CONNECTION_TIMEOUT)
                         console.log(CONNECTION_TIMEOUT);
+<<<<<<< HEAD
                     })
+=======
+                    }
+                    )
+>>>>>>> bc7a96a (Integerate solana wallet, UI improvements and error handling)
                 ]);
                 setIsLoading(false);
             } catch (error) {
@@ -57,12 +67,24 @@ const Dashboard = ({ CONNECTION_TIMEOUT }) => {
             }
         }
         fetchBalance()
+<<<<<<< HEAD
     }, [connected, connection, publicKey, navigate, CONNECTION_TIMEOUT]);
+=======
+    }, [connected, connection, publicKey, navigate]);
+
+    if (!connected) {
+        return null; // This will prevent rendering anything if not connected
+    }
+>>>>>>> bc7a96a (Integerate solana wallet, UI improvements and error handling)
 
     if (isLoading) {
         return <Spinner />;
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> bc7a96a (Integerate solana wallet, UI improvements and error handling)
     return (
         <div className='dark:bg-black bg-white w-full flex flex-col min-h-screen relative'>
             <div className='flex justify-between items-center z-10 py-5 px-60 sticky top-0 bg-white/30 dark:bg-black/30 backdrop-blur-md'>
@@ -75,11 +97,21 @@ const Dashboard = ({ CONNECTION_TIMEOUT }) => {
                 </div>
             </div>
             <div className='px-60 h-screen flex flex-col justify-start items-center mt-20'>
+<<<<<<< HEAD
                 <div className='w-1/2'>
                     <BalanceCard balance={balance} />
                     <Button className="w-full my-5" onClick={() => navigate("/app/step-1")}>
                         New Private Transfer <ArrowRight className='ml-3' size={20} />
                     </Button>
+=======
+                <div>
+                    {/* <h1 className='text-black dark:text-white mt-20 text-2xl font-semibold'>Your Private DeFi Space</h1> */}
+                </div>
+                <div className='w-1/3'>
+                    {/* <h2 className='text-black dark:text-white'>{balance}</h2> */}
+                    <BalanceCard balance={balance}/>
+                    <Button className="w-full my-5">New Private Transfer <ArrowRight className='ml-3' size={20} /></Button>
+>>>>>>> bc7a96a (Integerate solana wallet, UI improvements and error handling)
                     <TransactionView />
                 </div>
             </div>
