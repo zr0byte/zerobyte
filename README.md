@@ -1,4 +1,4 @@
-# ZeroByte | Where Privacy Meets Trust in Decentralized Finance
+# ZeroByte | Pioneering Private Transfers on Solana
 
 ## Overview
 
