@@ -24,49 +24,10 @@ import NewTransaction from "./components/NewTransaction.jsx";
 import ReceiverView from "./components/ReceiverView.jsx";
 import ReviewCard from "./components/ReviewCard.jsx";
 import ZKPGenerateView from "./components/ZKPGenerateView.jsx";
+import WalletConnectionWrapper from "./components/WalletConnectionWrapper.jsx";
+
+
 const CONNECTION_TIMEOUT = 15000; // 15 seconds timeout
-
-const WalletConnectionWrapper = ({ children }) => {
-  const navigate = useNavigate()
-  const { connected, connecting } = useWallet();
-  const { connection } = useConnection();
-  const location = useLocation();
-
-  useEffect(() => {
-    const checkConnection = async () => {
-      if (connecting) return;
-
-      try {
-        await Promise.race([
-          connection.getLatestBlockhash(),
-          new Promise((_, reject) =>
-            setTimeout(() => reject(new Error('Connection timeout')), CONNECTION_TIMEOUT)
-          )
-        ]);
-        console.log(connection);
-        if (connected && location.pathname === '/') {
-          navigate('/app');
-        }
-      } catch (error) {
-        console.error('Connection error:', error);
-        toast.error("Failed to connect to the Solana network. Please check your internet connection and try again.");
-        if (location.pathname !== '/') {
-          navigate('/');
-        }
-      }
-    };
-
-    checkConnection();
-  }, [connected, connecting, connection, location, navigate]);
-
-  if (connecting) {
-    return <Spinner />;
-  }
-  // if (!connected) {
-  //   return null; // This will prevent any flickering as the navigate in useEffect will handle redirection
-  // }
-  return children;
-};
 
 const ProtectedRoute = ({ children }) => {
   const { connected } = useWallet();
@@ -75,7 +36,6 @@ const ProtectedRoute = ({ children }) => {
   if (!connected) {
     return <Navigate to="/" state={{ from: location }} replace />;
   }
-
   return children;
 };
 
@@ -84,7 +44,7 @@ const AppRoutes = () => {
   // const { connected } = useWallet();
 
   return (
-    <WalletConnectionWrapper>
+    <WalletConnectionWrapper CONNECTION_TIMEOUT={CONNECTION_TIMEOUT}>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/features" element={<Features />} />
