@@ -43,9 +43,9 @@ const WalletConnectionWrapper = ({ children, CONNECTION_TIMEOUT }) => {
         return <Spinner />;
     }
     
-    if (isLoggedIn && !connected) {
-        return null; // This will prevent any flickering as the navigate in useEffect will handle redirection
-    }
+    // if (isLoggedIn && !connected) {
+    //     return null; // This will prevent any flickering as the navigate in useEffect will handle redirection
+    // }
     return children;
 };
 
