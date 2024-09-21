@@ -34,8 +34,8 @@ The system consists of the following key components:
 
 1. Clone the repository:
    ```
-   git clone https://github.com/
-   cd 0byte
+   git clone https://github.com/zr0byte/zerobyte.git
+   cd zerobyte
    ```
 
 2. Install dependencies:
