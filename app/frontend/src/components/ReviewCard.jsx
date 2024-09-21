@@ -25,7 +25,7 @@ const ReviewCard = () => {
                 </div>
             </div>
             <div className='px-60 h-screen flex flex-col justify-start items-center mt-20'>
-                <div className='w-1/3'>
+                <div className='w-1/2'>
                     <Link to={"/app/step-2"}>
                         <Button variant={"ghost"} size={"sm"} className="text-black dark:text-white group pl-1"><ChevronLeft size={18} className='' />Back</Button>
                     </Link>

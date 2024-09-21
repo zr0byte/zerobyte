@@ -18,9 +18,9 @@ const Header = () => {
                     <Link to={"/how-it-works"}>
                         <Button variant="ghost" size="sm" className='text-black dark:text-white'>How it Works</Button>
                     </Link>
-                    <Link to={"/pricing"}>
+                    {/* <Link to={"/pricing"}>
                         <Button variant="ghost" size="sm" className='text-black dark:text-white'>Pricing</Button>
-                    </Link>
+                    </Link> */}
                     <Link to={"/docs"}>
                         <Button variant="ghost" size="sm" className='text-black dark:text-white'>ZeroByte Docs</Button>
                     </Link>

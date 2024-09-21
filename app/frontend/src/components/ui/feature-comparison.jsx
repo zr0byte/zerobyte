@@ -1,8 +1,7 @@
-import { useState } from 'react'
 
 function PricingTab(props) {
   return (
-    <div className={`h-full flex  justify-center mx-auto w-1/2`}>
+    <div className={`h-full flex  justify-center mx-auto`}>
       <div className="relative flex flex-col h-full p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-900 shadow shadow-slate-950/5">
         {props.popular && (
           <div className="absolute top-0 right-0 mr-6 -mt-4">

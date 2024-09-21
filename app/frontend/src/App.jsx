@@ -62,7 +62,9 @@ const WalletConnectionWrapper = ({ children }) => {
   if (connecting) {
     return <Spinner />;
   }
-
+  // if (!connected) {
+  //   return null; // This will prevent any flickering as the navigate in useEffect will handle redirection
+  // }
   return children;
 };
 
@@ -77,6 +79,7 @@ const ProtectedRoute = ({ children }) => {
   return children;
 };
 
+
 const AppRoutes = () => {
   // const { connected } = useWallet();
 
@@ -86,7 +89,7 @@ const AppRoutes = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/features" element={<Features />} />
         <Route path="/how-it-works" element={<HowItWorks />} />
-        <Route path="/pricing" element={<Pricing />} />
+        {/* <Route path="/pricing" element={<Pricing />} /> */}
         <Route path="/docs" element={<Docs />} />
         <Route path="/app" element={<ProtectedRoute><Dashboard CONNECTION_TIMEOUT={CONNECTION_TIMEOUT} /></ProtectedRoute>} />
         <Route path="/app/step-1" element={<ProtectedRoute><NewTransaction /></ProtectedRoute>} />
