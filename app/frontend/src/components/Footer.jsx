@@ -18,7 +18,7 @@ export const Footer = () => {
           <h2 className='text-black dark:text-white mt-2 text-sm opacity-30'>Secure. Private. Decentralized.</h2>
         </div>
         <div className='flex flex-row space-x-3'>
-          <a href="/" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/zr0byte/zerobyte" target="_blank" rel="noopener noreferrer">
             <Button variant="link" size="icon" className="opacity-30 hover:opacity-100 transition-all">
               <FaGithub size={24} />
             </Button>
