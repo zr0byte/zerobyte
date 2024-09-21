@@ -62,7 +62,7 @@ const Dashboard = ({ CONNECTION_TIMEOUT }) => {
     if (isLoading) {
         return <Spinner />;
     }
-
+    
     return (
         <div className='dark:bg-black bg-white w-full flex flex-col min-h-screen relative'>
             <div className='flex justify-between items-center z-10 py-5 px-60 sticky top-0 bg-white/30 dark:bg-black/30 backdrop-blur-md'>
@@ -75,7 +75,7 @@ const Dashboard = ({ CONNECTION_TIMEOUT }) => {
                 </div>
             </div>
             <div className='px-60 h-screen flex flex-col justify-start items-center mt-20'>
-                <div className='w-1/3'>
+                <div className='w-1/2'>
                     <BalanceCard balance={balance} />
                     <Button className="w-full my-5" onClick={() => navigate("/app/step-1")}>
                         New Private Transfer <ArrowRight className='ml-3' size={20} />

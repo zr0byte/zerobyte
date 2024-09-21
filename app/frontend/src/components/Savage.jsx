@@ -1,11 +1,10 @@
 import React from 'react'
-import zLogo from "../../public/favicon_io/Z-final.png"
+import zLogo from "../assets/Z-final.png"
 const Savage = () => {
     // const screenWidth
     return (
-        <div className='bg-white dark:bg-black flex flex-col justify-center pb-20'>
+        <div className='bg-white dark:bg-black flex flex-col justify-center pt-32'>
             <div className='flex justify-center'>
-
                 <img src={zLogo} alt="ZeroByte Logo" className='h-24 w-24' />
                 <img src={zLogo} alt="ZeroByte Logo" className='h-24 w-24' />
                 <img src={zLogo} alt="ZeroByte Logo" className='h-24 w-24' />

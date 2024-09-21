@@ -14,8 +14,8 @@ const HomePage = () => {
             <GridBackground />
             <Hero2 />
             <KeyFeatures />
-            <Faqs />
             <OurTeam />
+            <Faqs />
             {/* <NewsLetter />  Will implement later */} 
             <Savage />
             <Footer />
