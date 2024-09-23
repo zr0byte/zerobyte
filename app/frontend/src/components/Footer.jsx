@@ -12,7 +12,7 @@ import { Separator } from './ui/separator'
 export const Footer = () => {
   return (
     <footer className='mt-auto flex flex-col bg-white dark:bg-black w-full overflow-hidden'>
-      <div className='px-72 py-20 flex justify-between'>
+      <div className='px-72 py-20 md:px-28 flex justify-between'>
         <div className='flex flex-col'>
           <Logo position={"bottom"} />
           <h2 className='text-black dark:text-white mt-2 text-sm opacity-30'>Secure. Private. Decentralized.</h2>
@@ -43,7 +43,7 @@ export const Footer = () => {
           © {new Date().getFullYear()} ZeroByte. All rights reserved.
         </p>
       </div>
-      <div className="h-[40rem] flex items-center justify-center ">
+      <div className="h-[50vh] flex items-center justify-center ">
         <TextHoverEffect text="ZeroByte" />
       </div>
     </footer>

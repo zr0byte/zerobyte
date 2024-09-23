@@ -12,7 +12,7 @@ import { Wallet } from './AppWalletProvider'
 const Header = () => {
     return (
         <>
-            <div className='z-10 py-5 px-60 flex flex-row justify-between items-center bg-white dark:bg-black'>
+            <div className='z-10 py-5 mx-60 md:mx-28 flex flex-row justify-between items-center bg-white dark:bg-black'>
                 <Logo position={"top"} />
                 <div className='flex space-x-6'>
                     <Link to={"/how-it-works"}>
