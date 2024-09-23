@@ -4,7 +4,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './
 
 const FAQList = () => {
   return (
-    <div className="w-1/2 my-8">
+    <div className="w-1/2 md:w-[60vw] my-8">
       <Accordion type="single" collapsible>
         {
           frequentlyAskedQuestions.map((faq, index) => (
