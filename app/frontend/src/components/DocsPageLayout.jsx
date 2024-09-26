@@ -49,7 +49,7 @@ const DocsPageLayout = () => {
 
     const Sidebar = () => (
         <ScrollArea className="h-full py-6 pl-4 pr-6">
-            <h2 className="mb-4 text-lg font-semibold text-black dark:text-white">Documentation</h2>
+            {/* <h2 className="mb-4 text-lg font-semibold text-black dark:text-white">Documentation</h2> */}
             <nav>
                 <ul className="space-y-2">
                     {menuItems.map((item) => (
@@ -72,14 +72,14 @@ const DocsPageLayout = () => {
     );
 
     return (
-        <div className="flex min-h-screen bg-background text-foreground">
+        <div className="flex min-h-screen bg-background text-foreground pr-4">
             {/* Sidebar */}
-            <div className=" w-64">
+            <div className="lg:w-64">
                 <Sidebar />
             </div>
 
             {/* Main content */}
-            <main className="flex-1 overflow-auto">
+            <main className="flex-1 overflow-auto lg:w-0 w-[90vw]">
                 <ScrollArea className="h-full">
                     <div className="container py-6 px-4">
                         {content[activeItem] || (
