@@ -1,24 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useWallet, useConnection } from '@solana/wallet-adapter-react';
-import { Wallet } from './AppWalletProvider';
 import { toast } from "sonner";
 import { ArrowRight } from 'lucide-react';
 import { Spinner } from './Spinner';
-import Logo from './Logo';
-import { ModeToggle } from './mode-toogle';
 import { Footer } from './Footer';
-import { LAMPORTS_PER_SOL } from '@solana/web3.js';
-import BalanceCard from './BalanceCard';
 import { Button } from './ui/button';
 import TransactionView from './TransactionView';
+import Header from './Header';
 
 const Dashboard = ({ CONNECTION_TIMEOUT }) => {
     const { publicKey, connected } = useWallet();
     const { connection } = useConnection();
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true);
-    const [balance, setBalance] = useState(null)
+    // const [balance, setBalance] = useState(null)
 
     useEffect(() => {
         const checkConnectionAndWallet = async () => {
@@ -44,39 +40,33 @@ const Dashboard = ({ CONNECTION_TIMEOUT }) => {
         };
         checkConnectionAndWallet();
 
-        const fetchBalance = async () => {
-            if (connected && publicKey) {
-                try {
-                    const balance = await connection.getBalance(publicKey);
-                    const balanceInSol = balance / LAMPORTS_PER_SOL;
-                    setBalance(`${balanceInSol} SOL`)
-                    console.log(balanceInSol);
-                } catch (error) {
-                    console.error("Failed to fetch balance", error)
-                }
-            }
-        }
-        fetchBalance()
+        // const fetchBalance = async () => {
+        //     if (connected && publicKey) {
+        //         try {
+        //             const balance = await connection.getBalance(publicKey);
+        //             const balanceInSol = balance / LAMPORTS_PER_SOL;
+        //             setBalance(`${balanceInSol} SOL`)
+        //             console.log(balanceInSol);
+        //         } catch (error) {
+        //             console.error("Failed to fetch balance", error)
+        //         }
+        //     }
+        // }
+        // fetchBalance()
     }, [connected, connection, publicKey, navigate, CONNECTION_TIMEOUT]);
 
     if (isLoading) {
         return <Spinner />;
     }
-    
+
     return (
         <div className='dark:bg-black bg-white w-full flex flex-col min-h-screen relative'>
-            <div className='flex justify-between items-center z-10 py-5 px-60 md:px-28 sticky top-0 bg-white/30 dark:bg-black/30 backdrop-blur-md'>
-                <div>
-                    <Logo position={"top"} />
-                </div>
-                <div className='space-x-6'>
-                    <Wallet />
-                    <ModeToggle />
-                </div>
+            <div className='z-10 sticky top-0 bg-white/30 dark:bg-black/30 backdrop-blur-md'>
+                <Header position={"bottom"}/>
             </div>
-            <div className='px-60 h-screen flex flex-col justify-start items-center mt-20'>
-                <div className='w-1/2 md:w-[80vw]'>
-                    <BalanceCard balance={balance} />
+            <div className='lg:px-60 w-full sm:px-5 h-screen flex flex-col justify-start items-center mt-20'>
+                <div className='lg:w-[60vw] md:w-[80vw] w-[90vw]'>
+                    {/* <BalanceCard /> */}
                     <Button className="w-full my-5" onClick={() => navigate("/app/step-1")}>
                         New Private Transfer <ArrowRight className='ml-3' size={20} />
                     </Button>

@@ -3,7 +3,7 @@ import zLogo from "../assets/Z-final.png"
 const Savage = () => {
     // const screenWidth
     return (
-        <div className='bg-white dark:bg-black flex flex-col justify-center md:py-28'>
+        <div className='bg-white dark:bg-black flex flex-col justify-center md:py-28 py-20'>
             <div className='flex justify-center'>
                 <img src={zLogo} alt="ZeroByte Logo" className='h-24 w-24' />
                 <img src={zLogo} alt="ZeroByte Logo" className='h-24 w-24' />

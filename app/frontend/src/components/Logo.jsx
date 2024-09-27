@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const Logo = ({ position }) => {
     return (
-        <div>
+        <div className='w-auto'>
             {position === "top"
                 ?
                 <Link to={'/'}>
@@ -12,7 +12,6 @@ const Logo = ({ position }) => {
                 :
                 <h1 className='text-black text-3xl dark:text-white font-bold tracking-tighter'>ZeroByte</h1>
             }
-
         </div>
     )
 }

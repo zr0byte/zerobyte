@@ -5,8 +5,10 @@ import { Button } from './ui/button'
 import { ArrowRight, CheckCircleIcon, InfoIcon } from 'lucide-react'
 import { Progress } from './ui/progress'
 import { ResuableAlert } from './ReuseableAlert'
+import { useNavigate } from 'react-router-dom'
 
-const ZKPGenerateCard = ({ title, loadingText, successText, succesMsg, alertModal }) => {
+const ZKPGenerateCard = ({ title, loadingText, successText, succesMsg, alertModal, btnText, url }) => {
+    const navigate = useNavigate()
     const [progress, setProgress] = useState(0)
     const [isComplete, setIsComplete] = useState(false)
 
@@ -50,9 +52,10 @@ const ZKPGenerateCard = ({ title, loadingText, successText, succesMsg, alertModa
                     <Button
                         className="w-full bg-blue-600 hover:bg-blue-700 text-white"
                         disabled={!isComplete}
-                        onClick={() => ""}
+                        onClick={() => navigate(`/app/${url}`)}
                     >
-                        Continue
+                        {btnText}
+                        <ArrowRight size={18} className='ml-1' />
                     </Button>
                     {/* This step will be of signature from the wallet */}
                 </CardContent>

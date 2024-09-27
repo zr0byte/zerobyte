@@ -4,12 +4,12 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './
 
 const FAQList = () => {
   return (
-    <div className="w-1/2 md:w-[60vw] my-8">
+    <div className="lg:w-1/2 md:w-[60vw] lg:mx-0 md:mx-0 mx-8">
       <Accordion type="single" collapsible>
         {
           frequentlyAskedQuestions.map((faq, index) => (
             <AccordionItem key={index} value={index.toString()}>
-              <AccordionTrigger className="dark:text-white text-black">{faq.question}</AccordionTrigger>
+              <AccordionTrigger className="dark:text-white text-black text-sm">{faq.question}</AccordionTrigger>
               <AccordionContent className="dark:text-white text-black">
               <div dangerouslySetInnerHTML={{ __html: faq.answer.replace(/\n/g, '<br />') }} />
               </AccordionContent>

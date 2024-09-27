@@ -23,13 +23,18 @@ const TransactionMake = () => {
                     <div className="grid w-full max-w-full items-center gap-1.5">
                         <Label htmlFor="email">Amount to send (SOL)</Label>
                         <Input type="number" id="number" placeholder="0.00" />
+                        <div className="space-y-2">
+                            <Label htmlFor="address">Receiver's Public Address</Label>
+                            <Input type="text" id="address" placeholder="Enter recipient's public address" />
+                        </div>
                         <div className='my-2'>
                             <Label htmlFor="email">Optional encrypted note  </Label>
-                            <Textarea className='my-1' placeholder="Add a private note..."/>
+                            <Textarea className='my-1' placeholder="Add a private note..." />
                             <p className='text-sm opacity-30'>This note will be encrypted and only visible to the recipient.</p>
                         </div>
-                        <ResuableAlert icon={<Info size={18}/>} title={"Warning"} description={"Blockchain transactions are irreversible. Please double-check all details before proceeding."} variant={"warning"}/>
-                        <Button className="mt-2" onClick={() => {navigate("/app/step-2")}}>Continue <ArrowRight size={18} className='ml-1'/></Button>
+
+                        <ResuableAlert icon={<Info size={18} />} title={"Warning"} description={"Blockchain transactions are irreversible. Please double-check all details before proceeding."} variant={"warning"} />
+                        <Button className="mt-2" onClick={() => { navigate("/app/proof-of-funds") }}>Continue <ArrowRight size={18} className='ml-1' /></Button>
                     </div>
                 </CardContent>
             </Card>

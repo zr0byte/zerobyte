@@ -9,24 +9,19 @@ import { Link, useNavigate } from 'react-router-dom'
 import { AlertCircleIcon, ChevronLeft, Info, ShieldIcon } from 'lucide-react'
 import { Checkbox } from './ui/checkbox'
 import { ResuableAlert } from './ReuseableAlert'
+import Header from './Header'
 
 const ReviewCard = () => {
     const navigate = useNavigate()
     const [isConfirmed, setIsConfirmed] = useState(false)
     return (
         <div className='dark:bg-black bg-white w-full flex flex-col min-h-screen relative'>
-            <div className='flex justify-between items-center z-10 py-5 px-60 md:px-28 sticky top-0 bg-white/30 dark:bg-black/30 backdrop-blur-md'>
-                <div>
-                    <Logo position={"top"} />
-                </div>
-                <div className='space-x-6'>
-                    <Wallet />
-                    <ModeToggle />
-                </div>
+            <div className='z-10 sticky top-0 bg-white/30 dark:bg-black/30 backdrop-blur-md'>
+                <Header />
             </div>
             <div className='px-60 h-screen flex flex-col justify-start items-center mt-20'>
-                <div className='w-1/2 md:w-[80vw]'>
-                    <Link to={"/app/step-2"}>
+                <div className='lg:w-[60vw] md:w-[80vw] w-[90vw]'>
+                    <Link to={"/app/step-1"}>
                         <Button variant={"ghost"} size={"sm"} className="text-black dark:text-white group pl-1"><ChevronLeft size={18} className='' />Back</Button>
                     </Link>
                     <div className='mt-5'>
@@ -40,7 +35,7 @@ const ReviewCard = () => {
                                     <p className="text-lg font-bold">50.00 SOL</p>
                                 </div>
                                 <div className="space-y-2">
-                                    <p className="text-sm font-medium text-gray-500">Stealth address</p>
+                                    <p className="text-sm font-medium text-gray-500">Receiver's address</p>
                                     <p className="text-lg font-mono">7J54K...XQHPv</p>
                                 </div>
                                 <div className="space-y-2">
@@ -64,7 +59,7 @@ const ReviewCard = () => {
                                 <Button
                                     className="w-full bg-blue-600 hover:bg-blue-700 text-white"
                                     disabled={!isConfirmed}
-                                    onClick={() => navigate("/app/smart-contract-generate")}
+                                    onClick={() => navigate("/app/generate-smart-contract")}
                                 >
                                     Confirm and Send
                                 </Button>
