@@ -28,7 +28,8 @@ const Dashboard = ({ CONNECTION_TIMEOUT }) => {
                     connection.getLatestBlockhash(),
                     new Promise((_, reject) => {
                         setTimeout(() => reject(new Error('Connection timeout')), CONNECTION_TIMEOUT)
-                        console.log(CONNECTION_TIMEOUT);
+                        // console.log(CONNECTION_TIMEOUT);
+                        // console.log("Sender",publicKey.toBase58());
                     })
                 ]);
                 setIsLoading(false);

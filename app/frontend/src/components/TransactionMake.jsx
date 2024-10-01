@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './ui/card'
 import { Label } from './ui/label'
 import { Input } from './ui/input'
@@ -8,10 +8,50 @@ import { Info } from 'lucide-react';
 import { Button } from './ui/button'
 import { ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom'
+import { generateZeroProof } from '@/utils/send-data-backend'
+import { useWallet } from '@solana/wallet-adapter-react'
+// import { validateSolanaAddress } from '@/utils/wallet-validator'
 
+const MAX_DECIMALS = 9;
 const TransactionMake = () => {
     const navigate = useNavigate()
-    return (
+    const [toAddress, setToAddress] = useState("")
+    const [amount, setAmount] = useState("")
+    const [privateMsg, setPrivateMsg] = useState("")
+    const { publicKey } = useWallet()
+    const pubKeyString = publicKey.toBase58()
+
+    const handlePublicAddressChange = (e) => {
+        const val = e.target.value
+        setToAddress(val)
+        console.log("Receiver's toAddress", val);
+    }
+    const handleAmountChange = (e) => {
+        let val = e.target.value;
+        // Remove leading zeros but preserve the "0." for decimal inputs
+        val = val.replace(/^0+(?!\.|$)/, '0');
+        // Regular expression to match valid input up to MAX_DECIMALS decimal places
+        const regex = new RegExp(`^\\d*(\\.\\d{0,${MAX_DECIMALS}})?$`);
+        // Allow only valid input that matches regex and restrict decimals
+        if (regex.test(val)) {
+            // Trim excessive trailing zeros after decimal point (e.g., 1.23000 -> 1.23)
+            if (val.includes('.')) {
+                val = val.replace(/(\.\d*?[1-9])0+$/g, '$1'); // Remove trailing zeros
+            }
+            setAmount(val);
+            console.log("Amount", val);
+        }
+    };
+    const handleMsgChange = (e) => {
+        const msg = e.target.value
+        setPrivateMsg(msg)
+        console.log("Your private msg", msg);
+    }
+    const handleClick = () => {
+        generateZeroProof(pubKeyString, toAddress, privateMsg, amount)
+        navigate("/app/proof-of-funds")
+    }
+    return (    
         <div className='w-full my-5'>
             <Card>
                 <CardHeader>
@@ -22,19 +62,35 @@ const TransactionMake = () => {
                 <CardContent className="flex flex-col">
                     <div className="grid w-full max-w-full items-center gap-1.5">
                         <Label htmlFor="email">Amount to send (SOL)</Label>
-                        <Input type="number" id="number" placeholder="0.00" />
+                        <Input
+                            type="text"
+                            id="amount"
+                            placeholder="0.00"
+                            onChange={handleAmountChange}
+                            value={amount}
+                        />
                         <div className="space-y-2">
-                            <Label htmlFor="address">Receiver's Public Address</Label>
-                            <Input type="text" id="address" placeholder="Enter recipient's public address" />
+                            <Label htmlFor="toAddress">Receiver's Public Address</Label>
+                            <Input
+                                type="text"
+                                id="toAddress"
+                                placeholder="Enter recipient's public toAddress"
+                                onChange={handlePublicAddressChange}
+                                value={toAddress}
+                            />
                         </div>
                         <div className='my-2'>
                             <Label htmlFor="email">Optional encrypted note  </Label>
-                            <Textarea className='my-1' placeholder="Add a private note..." />
+                            <Textarea
+                                className='my-1'
+                                placeholder="Add a private note..."
+                                onChange={handleMsgChange}
+                                value={privateMsg} />
                             <p className='text-sm opacity-30'>This note will be encrypted and only visible to the recipient.</p>
                         </div>
 
                         <ResuableAlert icon={<Info size={18} />} title={"Warning"} description={"Blockchain transactions are irreversible. Please double-check all details before proceeding."} variant={"warning"} />
-                        <Button className="mt-2" onClick={() => { navigate("/app/proof-of-funds") }}>Continue <ArrowRight size={18} className='ml-1' /></Button>
+                        <Button className="mt-2" onClick={handleClick}>Continue <ArrowRight size={18} className='ml-1' /></Button>
                     </div>
                 </CardContent>
             </Card>

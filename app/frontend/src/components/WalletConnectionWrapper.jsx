@@ -21,7 +21,7 @@ const WalletConnectionWrapper = ({ children, CONNECTION_TIMEOUT }) => {
                         setTimeout(() => reject(new Error('Connection timeout')), CONNECTION_TIMEOUT)
                     )
                 ]);
-                console.log(connection);
+                // console.log(connection);
                 if (connected && (location.pathname === '/' || location.pathname === "/docs" || location.pathname === "/how-it-works")) {
                     navigate('/app');
                     setIsLoggedIn(true)
