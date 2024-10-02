@@ -5,6 +5,7 @@ import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
 import { UnsafeBurnerWalletAdapter } from '@solana/wallet-adapter-wallets';
 import { clusterApiUrl } from "@solana/web3.js";
 import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Toaster } from "sonner";
 import { ThemeProvider } from "./components/theme-provider.jsx";
 import WalletConnectionWrapper from "./components/WalletConnectionWrapper.jsx";
@@ -87,6 +88,7 @@ function App() {
       <WalletProvider wallets={wallets} autoConnect>
         <WalletModalProvider>
           <ThemeProvider>
+            <SpeedInsights />
             <BrowserRouter>
               <Toaster />
               <AppRoutes />
