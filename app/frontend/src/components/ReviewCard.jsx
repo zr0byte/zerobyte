@@ -32,7 +32,7 @@ const ReviewCard = () => {
                             <CardContent className="space-y-6">
                                 <div className="space-y-2">
                                     <p className="text-sm font-medium text-gray-500">Amount to be sent</p>
-                                    <p className="text-lg font-bold">50.00 SOL</p>
+                                    <p className="text-lg font-bold">{}</p>
                                 </div>
                                 <div className="space-y-2">
                                     <p className="text-sm font-medium text-gray-500">Receiver's address</p>

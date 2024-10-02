@@ -9,7 +9,7 @@ const HowItWorks = () => {
     <div className='dark:bg-black bg-white w-full flex flex-col min-h-screen'>
       <Header position={"top"}/>
       <div className='flex flex-col justify-center mt-20 items-center'>
-        <h1 className='text-black dark:text-white mt-auto text-6xl font-bold px-4 lg:px-0 md:px-0'>Discover How It All Comes Together</h1>
+        <h1 className='text-neutral-600 dark:text-neutral-400 mt-auto text-6xl font-bold px-4 lg:px-0 md:px-0'>Discover How It All Comes Together</h1>
         <h2 className='text-black dark:text-white my-4 opacity-35 px-4'>A Step-by-Step Guide to Understanding Our Process and Features.</h2>
         <PhotoProvider>
 
