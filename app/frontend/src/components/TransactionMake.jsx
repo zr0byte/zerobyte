@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useAtom } from 'jotai'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './ui/card'
 import { Label } from './ui/label'
 import { Input } from './ui/input'
@@ -11,23 +12,33 @@ import { useNavigate } from 'react-router-dom'
 import { generateZeroProof } from '@/utils/send-data-backend'
 import { useWallet } from '@solana/wallet-adapter-react'
 // import { validateSolanaAddress } from '@/utils/wallet-validator'
+import { receiverAtom, amountAtom, privateMessageAtom, senderAtom, generateProofAtom } from '../store/transactionAtom'
 
 const MAX_DECIMALS = 9;
 const TransactionMake = () => {
     const navigate = useNavigate()
-    const [toAddress, setToAddress] = useState("")
-    const [amount, setAmount] = useState("")
-    const [privateMsg, setPrivateMsg] = useState("")
     const { publicKey } = useWallet()
+    const [sender, setSender] = useAtom(senderAtom)
+    const [amount, setAmount] = useAtom(amountAtom)
+    const [receiver, setReceiver] = useAtom(receiverAtom)
+    const [privateMessage, setPrivateMessage] = useAtom(privateMessageAtom)
+    const [, generateProof] = useAtom(generateProofAtom);
     const pubKeyString = publicKey.toBase58()
-
     const handlePublicAddressChange = (e) => {
         const val = e.target.value
-        setToAddress(val)
-        console.log("Receiver's toAddress", val);
+        setReceiver(val)
+        console.log("Receiver's receiver", val);
     }
+    useEffect(() => {
+        if (publicKey) {
+            setSender(publicKey.toBase58())
+        }
+    }, [publicKey, setSender])
     const handleAmountChange = (e) => {
         let val = e.target.value;
+        if (val === "") {
+            return
+        }
         // Remove leading zeros but preserve the "0." for decimal inputs
         val = val.replace(/^0+(?!\.|$)/, '0');
         // Regular expression to match valid input up to MAX_DECIMALS decimal places
@@ -44,15 +55,15 @@ const TransactionMake = () => {
     };
     const handleMsgChange = (e) => {
         const msg = e.target.value
-        setPrivateMsg(msg)
+        setPrivateMessage(msg)
         console.log("Your private msg", msg);
     }
-    const handleClick = () => {
-        generateZeroProof(pubKeyString, toAddress, privateMsg, amount)
-        navigate("/app/proof-of-funds")
-    }
+    const handleClick = async () => {
+        await generateProof();
+        navigate("/app/proof-of-funds");
+      };
     return (    
-        <div className='w-full my-5'>
+        <div className='w-full my-5'>   
             <Card>
                 <CardHeader>
                     <CardTitle>
@@ -70,13 +81,13 @@ const TransactionMake = () => {
                             value={amount}
                         />
                         <div className="space-y-2">
-                            <Label htmlFor="toAddress">Receiver's Public Address</Label>
+                            <Label htmlFor="receiver">Receiver's Public Address</Label>
                             <Input
                                 type="text"
-                                id="toAddress"
-                                placeholder="Enter recipient's public toAddress"
+                                id="receiver"
+                                placeholder="Enter recipient's public receiver"
                                 onChange={handlePublicAddressChange}
-                                value={toAddress}
+                                value={receiver}
                             />
                         </div>
                         <div className='my-2'>
@@ -85,7 +96,7 @@ const TransactionMake = () => {
                                 className='my-1'
                                 placeholder="Add a private note..."
                                 onChange={handleMsgChange}
-                                value={privateMsg} />
+                                value={privateMessage} />
                             <p className='text-sm opacity-30'>This note will be encrypted and only visible to the recipient.</p>
                         </div>
 

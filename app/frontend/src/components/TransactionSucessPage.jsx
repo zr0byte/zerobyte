@@ -6,13 +6,20 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from './ui/card'
 import Header from './Header'
 import { Footer } from './Footer'
 import { useNavigate } from 'react-router-dom'
+import usePreventBack from '@/hooks/usePreventBack'
 
 export default function TransactionSuccess() {
     const [copied, setCopied] = useState(false)
     const navigate = useNavigate()
-    const transactionId = '3Wk2gWgMtMZXVLYzjNJNz6UiNpJXKWxmzKvTsqXXXXXX'
+    const transactionId = '3Wk2gWgMtMZXVLYzjNJNz6UiNpJXKWxmzKvTsqXXXXXX' // Will make it dynamic
+    usePreventBack();
+
+    const handleDashboardClick = () => {
+        navigate('/app');
+    };
 
     useEffect(() => {
+
         if (copied) {
             const timer = setTimeout(() => setCopied(false), 2000)
             return () => clearTimeout(timer)
@@ -62,7 +69,7 @@ export default function TransactionSuccess() {
                         </div>
                     </CardContent>
                     <CardFooter className="flex flex-col space-y-2">
-                        <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white" onClick={() => navigate("/app")}>
+                        <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white" onClick={handleDashboardClick}>
                             Back to Dashboard
                         </Button>
                         <Button variant="outline" className="w-full">

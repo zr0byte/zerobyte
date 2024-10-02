@@ -4,10 +4,15 @@ import { ChevronLeft, Info } from 'lucide-react'
 import { ResuableAlert } from './ReuseableAlert'
 import Header from './Header'
 import { Footer } from './Footer'
-import { Link } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { Button } from './ui/button'
 
 const ProofOfFunds = () => {
+    const navigate = useNavigate()
+    const handleClick = () => {
+        navigate("/app/step-1")
+        window.location.reload()
+    }
     return (
         <div className='dark:bg-black bg-white w-full flex flex-col min-h-screen relative'>
             <div className='z-10 sticky top-0 bg-white/30 dark:bg-black/30 backdrop-blur-md'>
@@ -15,9 +20,9 @@ const ProofOfFunds = () => {
             </div>
             <div className='px-60 h-auto flex flex-col justify-start items-center mt-20'>
                 <div className='lg:w-[60vw] md:w-[80vw] w-[90vw]'>
-                    <Link to={"/app/step-1"}>
-                        <Button variant={"ghost"} size={"sm"} className="text-black dark:text-white group pl-1"><ChevronLeft size={18} className='' />Back</Button>
-                    </Link>
+                    {/* <Link to={"/app/step-1"}>
+                    </Link> */}
+                        <Button variant={"ghost"} size={"sm"} className="text-black dark:text-white group pl-1" onClick={handleClick}><ChevronLeft size={18} className='' />Back</Button>
                     <ZKPGenerateCard
                         title={"Generating Proof of Funds"}
                         loadingText={"Generating proof of sufficient funds..."}
