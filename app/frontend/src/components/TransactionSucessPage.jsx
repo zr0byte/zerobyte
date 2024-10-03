@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Button } from "@/components/ui/button"
-import { CheckCircle, Copy, ExternalLink } from 'lucide-react'
+import { CheckCircle, ClipboardCheck, Copy, ExternalLink } from 'lucide-react'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from './ui/card'
 import Header from './Header'
 import { Footer } from './Footer'
@@ -10,6 +10,7 @@ import usePreventBack from '@/hooks/usePreventBack'
 
 export default function TransactionSuccess() {
     const [copied, setCopied] = useState(false)
+    const [error, setError] = useState(false)
     const navigate = useNavigate()
     const transactionId = '3Wk2gWgMtMZXVLYzjNJNz6UiNpJXKWxmzKvTsqXXXXXX' // Will make it dynamic
     usePreventBack();
@@ -63,7 +64,7 @@ export default function TransactionSuccess() {
                             <div className="flex items-center justify-between bg-white dark:bg-black border  border-gray-400 rounded p-2">
                                 <code className="text-sm text-black dark:text-white break-all p-1">{transactionId}</code>
                                 <Button variant="ghost" size="sm" onClick={copyToClipboard}>
-                                    {copied ? <CheckCircle className="h-4 w-4 text-green-500" /> : <Copy className="h-4 w-4" />}
+                                    {copied ? <ClipboardCheck className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
                                 </Button>
                             </div>
                         </div>

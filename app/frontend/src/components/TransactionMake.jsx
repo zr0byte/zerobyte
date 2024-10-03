@@ -26,6 +26,10 @@ const TransactionMake = () => {
     const pubKeyString = publicKey.toBase58()
     const handlePublicAddressChange = (e) => {
         const val = e.target.value
+        if (val === "") {
+            setReceiver("")
+            return
+        }
         setReceiver(val)
         console.log("Receiver's receiver", val);
     }
@@ -37,6 +41,7 @@ const TransactionMake = () => {
     const handleAmountChange = (e) => {
         let val = e.target.value;
         if (val === "") {
+            setAmount("")
             return
         }
         // Remove leading zeros but preserve the "0." for decimal inputs
@@ -59,11 +64,12 @@ const TransactionMake = () => {
         console.log("Your private msg", msg);
     }
     const handleClick = async () => {
-        await generateProof();
         navigate("/app/proof-of-funds");
-      };
-    return (    
-        <div className='w-full my-5'>   
+        await generateProof();
+    };
+    const isEmpty = !amount || !receiver // to check if the fields are empty or not
+    return (
+        <div className='w-full my-5'>
             <Card>
                 <CardHeader>
                     <CardTitle>
@@ -101,7 +107,7 @@ const TransactionMake = () => {
                         </div>
 
                         <ResuableAlert icon={<Info size={18} />} title={"Warning"} description={"Blockchain transactions are irreversible. Please double-check all details before proceeding."} variant={"warning"} />
-                        <Button className="mt-2" onClick={handleClick}>Continue <ArrowRight size={18} className='ml-1' /></Button>
+                        <Button className="mt-2" onClick={handleClick} disabled={isEmpty}>Continue <ArrowRight size={18} className='ml-1' /></Button>
                     </div>
                 </CardContent>
             </Card>
