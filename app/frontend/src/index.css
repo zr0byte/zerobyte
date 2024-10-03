@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.border-opacity-custom {
+    border-color: rgba(38, 38, 38, 1); /* Adjust the opacity as needed */
+}

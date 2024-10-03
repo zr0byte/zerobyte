@@ -68,7 +68,7 @@ const AppRoutes = () => {
           <Route path="/app/step-1" element={<ProtectedRoute><NewTransaction /></ProtectedRoute>} />
           <Route path="/app/proof-of-funds" element={<ProtectedRoute><ProofOfFunds /></ProtectedRoute>} />
           <Route path="/app/review-transaction" element={<ProtectedRoute><ReviewCard /></ProtectedRoute>} />
-          <Route path="/app/generate-smart-contract" element={<ProtectedRoute><ZKPGenerateView /></ProtectedRoute>} />
+          {/* <Route path="/app/generate-smart-contract" element={<ProtectedRoute><ZKPGenerateView /></ProtectedRoute>} /> */}
           <Route path="/app/success" element={<ProtectedRoute><TransactionSucessPage /></ProtectedRoute>} />
           <Route path="*" element={<NotFound />} />
         </Routes>

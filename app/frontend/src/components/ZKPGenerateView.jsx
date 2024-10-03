@@ -19,7 +19,7 @@ const ZKPGenerateView = ({}) => {
             <div className='px-60 h-screen flex flex-col justify-start items-center mt-20'>
                 <div className='lg:w-[60vw] md:w-[80vw] w-[90vw]'>
                     <Link to={"/app/review-transaction"}>
-                        <Button variant={"ghost"} size={"sm"} className="text-black dark:text-white group pl-1"><ChevronLeft size={18} className='' />Back</Button>
+                        <Button variant={"ghost"} size={"sm"} className="text-black dark:text-white group pl-1"><ChevronLeft size={18} />Back</Button>
                     </Link>
                     <ZKPGenerateCard
                         title={"Encrypted smart contract"}
