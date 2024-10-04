@@ -8,8 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "start": "serve -s dist",
-    "preview": "vite preview",
-    "postinstall": "npm run build"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.0",
