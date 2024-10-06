@@ -108,15 +108,7 @@ const ZKPGenerateCard = ({ title, loadingText, successText, succesMsg, alertModa
         if (proofError && !toastShown) {
             toast.error("Failed to generate proof. Please try again.", {
                 description: "Please ensure you have sufficient SOL in your wallet.",
-                style: {
-                    backgroundColor: '#f56565',
-                    color: '#fff',
-                    fontWeight: 'bold',
-                    padding: '16px',
-                    borderRadius: '8px',
-                    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-                },
-                duration: 5000,
+                duration: 5000
             });
             setToastShown(true); // Set the flag to true after the toast is shown
         }

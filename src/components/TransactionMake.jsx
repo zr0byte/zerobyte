@@ -13,6 +13,8 @@ import { generateZeroProof } from '@/utils/send-data-backend'
 import { useWallet } from '@solana/wallet-adapter-react'
 // import { validateSolanaAddress } from '@/utils/wallet-validator'
 import { receiverAtom, amountAtom, privateMessageAtom, senderAtom, generateProofAtom } from '../store/transactionAtom'
+import { validateSolanaAddress } from '@/utils/wallet-validator'
+import { toast } from 'sonner'
 
 const MAX_DECIMALS = 9;
 const TransactionMake = () => {
@@ -23,14 +25,26 @@ const TransactionMake = () => {
     const [receiver, setReceiver] = useAtom(receiverAtom)
     const [privateMessage, setPrivateMessage] = useAtom(privateMessageAtom)
     const [, generateProof] = useAtom(generateProofAtom);
-    const pubKeyString = publicKey.toBase58()
+    const [isAddressValid, setIsAddressValid] = useState(false)
+    const pubKeyString = publicKey?.toBase58()
     const handlePublicAddressChange = (e) => {
         const val = e.target.value
+        setReceiver(val)
         if (val === "") {
-            setReceiver("")
+            // setReceiver("")
+            setIsAddressValid(false);
             return
         }
-        setReceiver(val)
+        if (validateSolanaAddress(val)) {
+            setIsAddressValid(true); // Mark as valid
+        } else {
+            setIsAddressValid(false); // Mark as invalid
+            toast.error("Wallet address is not valid!", {
+                description: "Please enter a valid SOL address.",
+                duration: 5000,
+                // richColors:"true"
+            }); // Display error toast
+        }
         console.log("Receiver's receiver", val);
     }
     useEffect(() => {
@@ -107,7 +121,7 @@ const TransactionMake = () => {
                         </div>
 
                         <ResuableAlert icon={<Info size={18} />} title={"Warning"} description={"Blockchain transactions are irreversible. Please double-check all details before proceeding."} variant={"warning"} />
-                        <Button className="mt-2" onClick={handleClick} disabled={isEmpty}>Continue <ArrowRight size={18} className='ml-1' /></Button>
+                        <Button className="mt-2" onClick={handleClick} disabled={isEmpty || !isAddressValid}>Continue <ArrowRight size={18} className='ml-1' /></Button>
                     </div>
                 </CardContent>
             </Card>
