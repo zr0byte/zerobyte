@@ -28,7 +28,11 @@ const WalletConnectionWrapper = ({ children, CONNECTION_TIMEOUT }) => {
                 }
             } catch (error) {
                 console.error('Connection error:', error);
-                toast.error("Failed to connect to the Solana network. Please check your internet connection and try again.");
+                toast.error("Connection failed.", {
+                    description: "Failed to connect to the Solana network. Please check your internet connection and try again.",
+                    duration: 5000,    // Set duration to 5000ms
+                    richColors: "true"
+                });
                 if (location.pathname !== '/') {
                     navigate('/');
                     setIsLoggedIn(false)

@@ -5,3 +5,16 @@
 .border-opacity-custom {
     border-color: rgba(38, 38, 38, 1); /* Adjust the opacity as needed */
 }
+
+.spline-container {
+    width: 400px;
+    height: 700px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .spline-container canvas {
+    width: 100% !important;
+    height: 100% !important;
+    pointer-events: none;
+  }

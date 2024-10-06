@@ -29,6 +29,8 @@
     "@solana/wallet-adapter-react-ui": "^0.9.35",
     "@solana/wallet-adapter-wallets": "^0.19.32",
     "@solana/web3.js": "^1.95.3",
+    "@splinetool/react-spline": "^4.0.0",
+    "@splinetool/runtime": "^1.9.28",
     "@tabler/icons-react": "^3.17.0",
     "axios": "^1.7.7",
     "class-variance-authority": "^0.7.0",

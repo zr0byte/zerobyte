@@ -35,7 +35,10 @@ const Dashboard = ({ CONNECTION_TIMEOUT }) => {
                 setIsLoading(false);
             } catch (error) {
                 console.error('Connection error:', error);
-                toast.error("Failed to connect to the Solana network. Please check your internet connection and try again.");
+                toast.error("Connection failed.", {
+                    description: "Failed to connect to the Solana network. Please check your internet connection and try again.",
+                    duration: 5000
+                });
                 navigate('/');
             }
         };
