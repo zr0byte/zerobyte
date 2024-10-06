@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import darkLogo from "../assets/logos/dark.png"
+import defaultLogo from "../assets/logos/default.png"
 
 const Logo = ({ position }) => {
     return (
@@ -7,10 +9,18 @@ const Logo = ({ position }) => {
             {position === "top"
                 ?
                 <Link to={'/'}>
-                    <h1 className='text-black text-3xl dark:text-white font-bold tracking-tighter'>ZeroByte</h1>
+                    <div className='text-black flex items-center text-3xl dark:text-white font-medium tracking-tighter'>
+                        <img src={darkLogo} alt="ZeroByte Logo" className='h-12 w-12 dark:hidden' />
+                        <img src={defaultLogo} alt="ZeroByte Logo" className='h-12 w-12 hidden dark:block' />
+                        <span className='ml-[-12px]'>byte</span>
+                    </div>
                 </Link>
                 :
-                <h1 className='text-black text-3xl dark:text-white font-bold tracking-tighter'>ZeroByte</h1>
+                <div className='text-black flex items-center text-3xl dark:text-white font-medium tracking-tighter'>
+                    <img src={darkLogo} alt="ZeroByte Logo" className='h-12 w-12 dark:hidden' />
+                    <img src={defaultLogo} alt="ZeroByte Logo" className='h-12 w-12 hidden dark:block' />
+                    <span className='ml-[-12px]'>byte</span>
+                </div>
             }
         </div>
     )
