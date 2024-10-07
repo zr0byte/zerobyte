@@ -4,9 +4,9 @@ export const commitmentLevel = "processed";
 export const endpoint = clusterApiUrl("devnet");
 export const connection = new Connection(endpoint, commitmentLevel);
 
-export const transferSolProgramId = new PublicKey("4PcALvTHvD1aPCsLqRZfKjgBEnFWUgZy67KDAFqjyCGN");
+export const transferSolProgramId = new PublicKey("83FiUkRH9kMqa6rwtdWH5Gxr7HyveKp5ML6n4LozS4X3");
 export const transferSolProgramInterface = {
-    "address": "4PcALvTHvD1aPCsLqRZfKjgBEnFWUgZy67KDAFqjyCGN",
+    "address": "83FiUkRH9kMqa6rwtdWH5Gxr7HyveKp5ML6n4LozS4X3",
     "metadata": {
         "name": "transfer_sol",
         "version": "0.1.0",
@@ -33,8 +33,7 @@ export const transferSolProgramInterface = {
                     "signer": true
                 },
                 {
-                    "name": "recipient",
-                    "writable": true
+                    "name": "recipient"
                 },
                 {
                     "name": "system_program",
