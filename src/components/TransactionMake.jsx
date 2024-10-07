@@ -19,7 +19,7 @@ import { toast } from 'sonner'
 const MAX_DECIMALS = 9;
 const TransactionMake = () => {
     const navigate = useNavigate()
-    const { publicKey } = useWallet()
+    const { publicKey } = useWallet()   
     const [sender, setSender] = useAtom(senderAtom)
     const [amount, setAmount] = useAtom(amountAtom)
     const [receiver, setReceiver] = useAtom(receiverAtom)

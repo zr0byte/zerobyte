@@ -27,6 +27,7 @@ export const generateProofAtom = atom(
             const response = await generateZeroProof(sender, receiver, amount, privateMessage);
             set(proofResponseAtom, response);
         } catch (error) {
+            console.log("Error from store file", error);
             set(proofErrorAtom, error.message || "Failed to generate proof");
         } finally {
             set(isGeneratingProofAtom, false);

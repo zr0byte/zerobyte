@@ -12,6 +12,11 @@ import { ResuableAlert } from './ReuseableAlert'
 import Header from './Header'
 import { amountAtom, privateMessageAtom, receiverAtom } from '@/store/transactionAtom'
 import { useAtom, useAtomValue } from 'jotai'
+import { useAnchorWallet } from '@solana/wallet-adapter-react'
+import { transferSol } from '@/utils/transfer-sol'
+
+import { Spinner } from './Spinner'
+import { toast } from 'sonner'
 
 const ReviewCard = () => {
     const navigate = useNavigate()
@@ -19,9 +24,30 @@ const ReviewCard = () => {
     const amount = useAtomValue(amountAtom)
     const receiver = useAtomValue(receiverAtom)
     const privateMessage = useAtomValue(privateMessageAtom)
+    const [txSignature, setTxSignature] = useState("");
+    const [isLoading, setIsLoading] = useState(false)
+    const wallet = useAnchorWallet();
     const handleClick = () => {
         navigate("/app/step-1")
-        window.location.reload()
+        // window.location.reload()
+    }
+
+    const handleTransfer = async () => {
+        if (!wallet) return;
+        try {
+            setIsLoading(true)
+            const signature = await transferSol(parseFloat(amount), receiver, wallet);
+            setTxSignature(signature);
+            navigate("/app/success")
+        } catch (error) {
+            setIsLoading(false)
+            navigate("/app/failed")
+            console.error("Transfer error:", error);
+            toast.error(error.message)
+        }
+    };
+    if (isLoading){
+        return <Spinner />
     }
     return (
         <div className='dark:bg-black bg-white w-full flex flex-col min-h-screen relative'>
@@ -73,7 +99,7 @@ const ReviewCard = () => {
                                 <Button
                                     className="w-full bg-blue-600 hover:bg-blue-700 text-white"
                                     disabled={!isConfirmed}
-                                    onClick={() => navigate("/app/success")}
+                                    onClick={handleTransfer}
                                 >
                                     Confirm and Send
                                 </Button>
