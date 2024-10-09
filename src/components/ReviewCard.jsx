@@ -17,6 +17,7 @@ import { transferSol } from '@/utils/transfer-sol'
 
 import { Spinner } from './Spinner'
 import { toast } from 'sonner'
+import { BN } from 'bn.js'
 
 const ReviewCard = () => {
     const navigate = useNavigate()
