@@ -38,7 +38,12 @@ const frequentlyAskedQuestions = [
     {
         question: "How does the app protect my data from hackers?",
         answer: "We use cutting-edge encryption and decentralized technology to safeguard your data from unauthorized access. Additionally, sensitive information like transaction details is stored privately on the blockchain and is not accessible to anyone without proper authorization."
+    },
+    {
+        question: "Is 0byte live? Can I use it for real transactions?",
+        answer: "0byte is currently in the building phase. While we're not fully live yet, you can still use the platform to make transactions on the devnet.\n\nImportant points to note:\n1) Transactions are processed on the devnet, not the main network.\n2) No real funds are transferred during this phase.\n3) Transactions are not private at this time.\n\nWe're actively working on implementing full privacy features and preparing for our main network launch. This development phase allows you to explore 0byte's features and functionality in a risk-free environment."
     }
+
 ];
 
 export default frequentlyAskedQuestions;
