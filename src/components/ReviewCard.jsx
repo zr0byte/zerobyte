@@ -15,6 +15,7 @@ import { LAMPORTS_PER_SOL } from '@solana/web3.js'
 
 import { Spinner } from './Spinner'
 import { toast } from 'sonner'
+import { Footer } from './Footer'
 
 const ReviewCard = () => {
     const navigate = useNavigate()
