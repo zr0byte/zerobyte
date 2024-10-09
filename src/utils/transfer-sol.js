@@ -1,15 +1,13 @@
 import { AnchorProvider, web3, BN } from "@project-serum/anchor";
-import { PublicKey, Transaction, TransactionInstruction, SystemProgram } from "@solana/web3.js";
+import { PublicKey, Transaction, TransactionInstruction, SystemProgram, LAMPORTS_PER_SOL } from "@solana/web3.js";
 import { connection } from "./constants";
 
 const programId = new PublicKey(import.meta.env.VITE_PROGRAM_ID);
-// console.log(programId.toBase58());
-
 const commitmentLevel = 'confirmed';
 
 async function sendLamports(wallet, to, amount) {
   let data = Buffer.alloc(8);
-  data.writeBigInt64LE(BigInt(amount));
+  data.writeBigInt64LE(BigInt(amount.toString()));
 
   let ins = new TransactionInstruction({
     keys: [
@@ -35,7 +33,7 @@ async function sendLamports(wallet, to, amount) {
   return signature;
 }
 
-export async function transferSol(amount, recipientAddress, wallet) {
+export async function transferSol(amountLamports, recipientAddress, wallet) {
   const provider = new AnchorProvider(connection, wallet, {
     preflightCommitment: commitmentLevel,
     commitment: commitmentLevel,
@@ -45,10 +43,8 @@ export async function transferSol(amount, recipientAddress, wallet) {
 
   try {
     const recipient = new PublicKey(recipientAddress);
-    const amountLamports = new BN(amount * web3.LAMPORTS_PER_SOL);
 
-    const signature = await sendLamports(wallet, recipient, amountLamports.toNumber());
-    // console.log("Transaction signature:", signature);
+    const signature = await sendLamports(wallet, recipient, amountLamports);
 
     // Wait for transaction confirmation
     const confirmation = await connection.confirmTransaction(signature, commitmentLevel);
@@ -69,12 +65,11 @@ export async function transferSol(amount, recipientAddress, wallet) {
       blockTime: transactionDetails.blockTime ? new Date(transactionDetails.blockTime * 1000).toISOString() : 'Unknown',
       sender: wallet.publicKey.toBase58(),
       recipient: recipientAddress,
-      amount: amount,
-      fee: transactionDetails.meta.fee / web3.LAMPORTS_PER_SOL,
+      amount: amountLamports.toNumber() / LAMPORTS_PER_SOL,
+      fee: transactionDetails.meta.fee / LAMPORTS_PER_SOL,
       status: confirmation.value.err ? 'Failed' : 'Success'
     };
 
-    // console.log("Transaction details:", transactionInfo);
     return transactionInfo;
   } catch (err) {
     console.error("Transaction error: ", err);

@@ -17,6 +17,10 @@ import { transferSol } from '@/utils/transfer-sol'
 
 import { Spinner } from './Spinner'
 import { toast } from 'sonner'
+
+import { BN } from '@project-serum/anchor'
+import { LAMPORTS_PER_SOL } from '@solana/web3.js'
+
 // import { BN } from 'bn.js'
 
 const ReviewCard = () => {
@@ -38,7 +42,8 @@ const ReviewCard = () => {
         if (!wallet) return;
         try {
             setIsLoading(true)
-            const transactionInfo = await transferSol(parseFloat(amount), receiver, wallet);
+            const amountLamports = new BN(parseFloat(amount) * LAMPORTS_PER_SOL);
+            const transactionInfo = await transferSol(amountLamports, receiver, wallet);
             setTransactionInfo(transactionInfo);
             navigate("/app/success")
         } catch (error) {
@@ -49,16 +54,16 @@ const ReviewCard = () => {
             toast.error(error.message)
         }
     };
-    const formatAmount = (value) => {
-        if (!value) return '0';
-        // Ensure the value is a string and use a regular expression to remove any non-numeric characters except '.'
-        const cleanedValue = value.toString().replace(/[^\d.]/g, '');
-        // Parse the cleaned value as a float and format it to 9 decimal places
-        const formattedValue = parseFloat(cleanedValue).toFixed(9);
-        // Remove trailing zeros after the decimal point
-        return formattedValue.replace(/\.?0+$/, '');
-    };
-    console.log('Amount type:', typeof amount, 'Value:', amount);
+    // const formatAmount = (value) => {
+    //     if (!value) return '0';
+    //     // Ensure the value is a string and use a regular expression to remove any non-numeric characters except '.'
+    //     const cleanedValue = value.toString().replace(/[^\d.]/g, '');
+    //     // Parse the cleaned value as a float and format it to 9 decimal places
+    //     const formattedValue = parseFloat(cleanedValue).toFixed(9);
+    //     // Remove trailing zeros after the decimal point
+    //     return formattedValue.replace(/\.?0+$/, '');
+    // };
+    // console.log('Amount type:', typeof amount, 'Value:', amount);
     if (isLoading) {
         return <Spinner />
     }
@@ -78,7 +83,7 @@ const ReviewCard = () => {
                             <CardContent className="space-y-6">
                                 <div className="space-y-2">
                                     <p className="text-sm font-medium text-gray-500">Amount to be sent</p>
-                                    <p className="text-lg font-bold">{formatAmount(amount) + " SOL"}</p>
+                                    <p className="text-lg font-bold">{amount + " SOL"}</p>
                                 </div>
                                 <div className="space-y-2">
                                     <p className="text-sm font-medium text-gray-500">Receiver's address</p>
