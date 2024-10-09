@@ -120,7 +120,8 @@ const TransactionMake = () => {
                             <p className='text-sm opacity-30'>This note will be encrypted and only visible to the recipient.</p>
                         </div> */}
 
-                        <ResuableAlert icon={<Info size={18} />} title={"Warning"} description={"Blockchain transactions are irreversible. Please double-check all details before proceeding."} variant={"warning"} />
+                        <ResuableAlert icon={<Info size={18} />} title={"Note"} description={
+                            "All transactions are currently processed on the devnet. This is a test environment and no real funds will be transferred. Use this opportunity to explore 0byte's features risk-free!"} variant={"warning"} />
                         <Button className="mt-2" onClick={handleClick} disabled={isEmpty || !isAddressValid}>Continue <ArrowRight size={18} className='ml-1' /></Button>
                     </div>
                 </CardContent>

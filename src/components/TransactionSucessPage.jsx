@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Button } from "@/components/ui/button"
-import { CheckCircle, ClipboardCheck, Copy, ExternalLink } from 'lucide-react'
+import { CheckCircle, ClipboardCheck, Copy, ExternalLink, Info } from 'lucide-react'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from './ui/card'
 import Header from './Header'
 import { Footer } from './Footer'
@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom'
 import usePreventBack from '@/hooks/usePreventBack'
 import { useAtomValue } from 'jotai'
 import { transactionsAtom } from '@/store/transactionAtom'
+import { ResuableAlert } from './ReuseableAlert'
 
 export default function TransactionSuccess() {
     const [copied, setCopied] = useState(false)
@@ -63,7 +64,7 @@ export default function TransactionSuccess() {
                         >
                             Your private transaction has been successfully processed and confirmed on the Solana blockchain.
                         </motion.p>
-                        <div className="bg-white dark:bg-black p-4 rounded-lg">
+                        <div className="bg-white dark:bg-black py-4 rounded-lg">
                             <p className="text-sm font-medium text-gray-500 mb-1">Transaction ID</p>
                             <div className="flex items-center justify-between bg-white dark:bg-black border  border-gray-400 rounded p-2">
                                 <code className="text-sm text-black dark:text-white break-all p-1">{latestTransaction.signature}</code>
@@ -74,17 +75,19 @@ export default function TransactionSuccess() {
                         </div>
                     </CardContent>
                     <CardFooter className="flex flex-col space-y-2">
+                        <ResuableAlert icon={<Info size={18} />} title={"Important"} description={
+                            "Transactions are currently not private. We are actively working on implementing full privacy features. Please be aware that transaction details may be visible during this development phase."} variant={"warning"} />
                         <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white" onClick={handleDashboardClick}>
                             Back to Dashboard
                         </Button>
                         <div className='w-full'>
 
-                        <a href={explorerUrl} target="_blank" rel="noopener noreferrer">
-                            <Button variant="outline" className="w-full">
-                                View on Explorer
-                                <ExternalLink className="ml-2 h-4 w-4" />
-                            </Button>
-                        </a>
+                            <a href={explorerUrl} target="_blank" rel="noopener noreferrer">
+                                <Button variant="outline" className="w-full">
+                                    View on Explorer
+                                    <ExternalLink className="ml-2 h-4 w-4" />
+                                </Button>
+                            </a>
                         </div>
                     </CardFooter>
                 </Card>
