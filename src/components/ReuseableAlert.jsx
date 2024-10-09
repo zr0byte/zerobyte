@@ -3,7 +3,7 @@ import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
 
 export function ResuableAlert({ icon, title, description, variant }) {
     return (
-        <div>
+        <div className="my-3">
             <Alert variant={variant}>
                 {icon}
                 <AlertTitle>

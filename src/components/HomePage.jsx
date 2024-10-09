@@ -7,6 +7,7 @@ import OurTeam from './OurTeam'
 import NewsLetter from './NewsLetter'
 import Hero2 from './Hero2'
 import Savage from './Savage'
+import OurVision from './OurVision'
 
 const HomePage = () => {
     return (
@@ -14,6 +15,7 @@ const HomePage = () => {
             <GridBackground />
             <Hero2 />
             <KeyFeatures />
+            <OurVision />
             <OurTeam />
             <Faqs />
             {/* <NewsLetter />  Will implement later */} 

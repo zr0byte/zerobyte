@@ -11,6 +11,7 @@ import WalletConnectionWrapper from "./components/WalletConnectionWrapper.jsx";
 import '@solana/wallet-adapter-react-ui/styles.css';
 import './components/custom-wallet-modal.css';
 import { Spinner } from "./components/Spinner.jsx";
+import "./global.js"
 
 // Lazy-loaded components
 const HomePage = lazy(() => import("./components/HomePage.jsx"));
@@ -24,6 +25,7 @@ const ReviewCard = lazy(() => import("./components/ReviewCard.jsx"));
 const NotFound = lazy(() => import("./components/NotFound.jsx"));
 const ProofOfFunds = lazy(() => import("./components/ProofOfFunds.jsx"))
 const TransactionSucessPage = lazy(() => import("./components/TransactionSucessPage.jsx"))
+const TransactionErrorPage = lazy(() => import("./components/TransactionErrorPage.jsx"))
 
 
 const CONNECTION_TIMEOUT = 15000; // 15 seconds timeout
@@ -70,6 +72,7 @@ const AppRoutes = () => {
           <Route path="/app/review-transaction" element={<ProtectedRoute><ReviewCard /></ProtectedRoute>} />
           {/* <Route path="/app/generate-smart-contract" element={<ProtectedRoute><ZKPGenerateView /></ProtectedRoute>} /> */}
           <Route path="/app/success" element={<ProtectedRoute><TransactionSucessPage /></ProtectedRoute>} />
+          <Route path="/app/failed" element={<ProtectedRoute><TransactionErrorPage /></ProtectedRoute>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

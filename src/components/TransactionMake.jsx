@@ -19,11 +19,11 @@ import { toast } from 'sonner'
 const MAX_DECIMALS = 9;
 const TransactionMake = () => {
     const navigate = useNavigate()
-    const { publicKey } = useWallet()
+    const { publicKey } = useWallet()   
     const [sender, setSender] = useAtom(senderAtom)
     const [amount, setAmount] = useAtom(amountAtom)
     const [receiver, setReceiver] = useAtom(receiverAtom)
-    const [privateMessage, setPrivateMessage] = useAtom(privateMessageAtom)
+    // const [privateMessage, setPrivateMessage] = useAtom(privateMessageAtom)
     const [, generateProof] = useAtom(generateProofAtom);
     const [isAddressValid, setIsAddressValid] = useState(false)
     const pubKeyString = publicKey?.toBase58()
@@ -45,7 +45,7 @@ const TransactionMake = () => {
                 // richColors:"true"
             }); // Display error toast
         }
-        console.log("Receiver's receiver", val);
+        // console.log("Receiver's receiver", val);
     }
     useEffect(() => {
         if (publicKey) {
@@ -69,13 +69,13 @@ const TransactionMake = () => {
                 val = val.replace(/(\.\d*?[1-9])0+$/g, '$1'); // Remove trailing zeros
             }
             setAmount(val);
-            console.log("Amount", val);
+            // console.log("Amount", val);
         }
     };
     const handleMsgChange = (e) => {
         const msg = e.target.value
         setPrivateMessage(msg)
-        console.log("Your private msg", msg);
+        // console.log("Your private msg", msg);
     }
     const handleClick = async () => {
         navigate("/app/proof-of-funds");
@@ -110,7 +110,7 @@ const TransactionMake = () => {
                                 value={receiver}
                             />
                         </div>
-                        <div className='my-2'>
+                        {/* <div className='my-2'>
                             <Label htmlFor="email">Optional encrypted note  </Label>
                             <Textarea
                                 className='my-1'
@@ -118,9 +118,10 @@ const TransactionMake = () => {
                                 onChange={handleMsgChange}
                                 value={privateMessage} />
                             <p className='text-sm opacity-30'>This note will be encrypted and only visible to the recipient.</p>
-                        </div>
+                        </div> */}
 
-                        <ResuableAlert icon={<Info size={18} />} title={"Warning"} description={"Blockchain transactions are irreversible. Please double-check all details before proceeding."} variant={"warning"} />
+                        <ResuableAlert icon={<Info size={18} />} title={"Note"} description={
+                            "All transactions are currently processed on the devnet. This is a test environment and no real funds will be transferred. Use this opportunity to explore 0byte's features risk-free!"} variant={"warning"} />
                         <Button className="mt-2" onClick={handleClick} disabled={isEmpty || !isAddressValid}>Continue <ArrowRight size={18} className='ml-1' /></Button>
                     </div>
                 </CardContent>
