@@ -48,6 +48,17 @@ const ReviewCard = () => {
             toast.error(error.message)
         }
     };
+    const formatAmount = (value) => {
+        if (!value) return '0';
+        try {
+          // Ensure value is a BN instance
+          const bnValue = BN.isBN(value) ? value : new BN(value.toString());
+          return bnValue.toString();
+        } catch (error) {
+          console.error('Error formatting amount:', error);
+          return '0';
+        }
+      };
     if (isLoading){
         return <Spinner />
     }
@@ -67,7 +78,7 @@ const ReviewCard = () => {
                             <CardContent className="space-y-6">
                                 <div className="space-y-2">
                                     <p className="text-sm font-medium text-gray-500">Amount to be sent</p>
-                                    <p className="text-lg font-bold">{amount + " SOL"}</p>
+                                    <p className="text-lg font-bold">{formatAmount(amount) + " SOL"}</p>
                                 </div>
                                 <div className="space-y-2">
                                     <p className="text-sm font-medium text-gray-500">Receiver's address</p>
