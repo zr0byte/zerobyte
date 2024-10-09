@@ -10,7 +10,7 @@ import { AlertCircleIcon, ChevronLeft, Info, ShieldIcon } from 'lucide-react'
 import { Checkbox } from './ui/checkbox'
 import { ResuableAlert } from './ReuseableAlert'
 import Header from './Header'
-import { amountAtom, privateMessageAtom, receiverAtom } from '@/store/transactionAtom'
+import { amountAtom, persistentTransactionsAtom, privateMessageAtom, receiverAtom } from '@/store/transactionAtom'
 import { useAtom, useAtomValue } from 'jotai'
 import { useAnchorWallet } from '@solana/wallet-adapter-react'
 import { transferSol } from '@/utils/transfer-sol'
@@ -24,8 +24,9 @@ const ReviewCard = () => {
     const amount = useAtomValue(amountAtom)
     const receiver = useAtomValue(receiverAtom)
     const privateMessage = useAtomValue(privateMessageAtom)
-    const [txSignature, setTxSignature] = useState("");
+    // const [txSignature, setTxSignature] = useState("");
     const [isLoading, setIsLoading] = useState(false)
+    const [, setTransactionInfo] = useAtom(persistentTransactionsAtom)
     const wallet = useAnchorWallet();
     const handleClick = () => {
         navigate("/app/step-1")
@@ -36,12 +37,13 @@ const ReviewCard = () => {
         if (!wallet) return;
         try {
             setIsLoading(true)
-            const signature = await transferSol(parseFloat(amount), receiver, wallet);
-            setTxSignature(signature);
+            const transactionInfo = await transferSol(parseFloat(amount), receiver, wallet);
+            setTransactionInfo(transactionInfo);
             navigate("/app/success")
         } catch (error) {
             setIsLoading(false)
             navigate("/app/failed")
+            // setTransactionInfo(error)
             console.error("Transfer error:", error);
             toast.error(error.message)
         }

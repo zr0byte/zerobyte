@@ -7,16 +7,19 @@ import Header from './Header'
 import { Footer } from './Footer'
 import { useNavigate } from 'react-router-dom'
 import usePreventBack from '@/hooks/usePreventBack'
+import { useAtomValue } from 'jotai'
+import { transactionsAtom } from '@/store/transactionAtom'
 
 export default function TransactionSuccess() {
     const [copied, setCopied] = useState(false)
-    const [error, setError] = useState(false)
+    // const [error, setError] = useState(false)
     const navigate = useNavigate()
-    const transactionId = '3Wk2gWgMtMZXVLYzjNJNz6UiNpJXKWxmzKvTsqXXXXXX' // Will make it dynamic
+    const transactionInfo = useAtomValue(transactionsAtom)
+    const latestTransaction = transactionInfo[0]
     usePreventBack();
     const handleDashboardClick = () => {
         navigate('/app');
-        window.location.reload()
+        // window.location.reload()
     };
 
     useEffect(() => {
@@ -28,10 +31,11 @@ export default function TransactionSuccess() {
     }, [copied])
 
     const copyToClipboard = () => {
-        navigator.clipboard.writeText(transactionId)
+        navigator.clipboard.writeText(transactionInfo.signature)
         setCopied(true)
     }
-
+    const explorerUrl = `https://explorer.solana.com/tx/${latestTransaction.signature}?cluster=devnet`
+    // console.log(latestTransaction.signature);
     return (
         <div className="dark:bg-black bg-white w-full flex flex-col min-h-screen relative">
             <div className='z-10 sticky top-0 bg-white/30 dark:bg-black/30 backdrop-blur-md'>
@@ -62,7 +66,7 @@ export default function TransactionSuccess() {
                         <div className="bg-white dark:bg-black p-4 rounded-lg">
                             <p className="text-sm font-medium text-gray-500 mb-1">Transaction ID</p>
                             <div className="flex items-center justify-between bg-white dark:bg-black border  border-gray-400 rounded p-2">
-                                <code className="text-sm text-black dark:text-white break-all p-1">{transactionId}</code>
+                                <code className="text-sm text-black dark:text-white break-all p-1">{latestTransaction.signature}</code>
                                 <Button variant="ghost" size="sm" onClick={copyToClipboard}>
                                     {copied ? <ClipboardCheck className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
                                 </Button>
@@ -73,10 +77,15 @@ export default function TransactionSuccess() {
                         <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white" onClick={handleDashboardClick}>
                             Back to Dashboard
                         </Button>
-                        <Button variant="outline" className="w-full">
-                            View on Explorer
-                            <ExternalLink className="ml-2 h-4 w-4" />
-                        </Button>
+                        <div className='w-full'>
+
+                        <a href={explorerUrl} target="_blank" rel="noopener noreferrer">
+                            <Button variant="outline" className="w-full">
+                                View on Explorer
+                                <ExternalLink className="ml-2 h-4 w-4" />
+                            </Button>
+                        </a>
+                        </div>
                     </CardFooter>
                 </Card>
             </div>
