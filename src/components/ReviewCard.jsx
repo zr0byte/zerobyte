@@ -27,12 +27,15 @@ const ReviewCard = () => {
     const [amountLamports, setAmountLamports] = useState(null)
 
     useEffect(() => {
+        console.log('Amount changed:', amount);
         if (amount) {
             try {
                 const floatAmount = parseFloat(amount)
                 if (!isNaN(floatAmount)) {
                     const lamports = Math.round(floatAmount * LAMPORTS_PER_SOL)
-                    setAmountLamports(new BN(lamports.toString()))
+                    const bnAmount = new BN(lamports.toString())
+                    console.log('BN amount:', bnAmount.toString());
+                    setAmountLamports(bnAmount)
                 } else {
                     console.error('Invalid amount:', amount)
                     setAmountLamports(null)
@@ -41,6 +44,8 @@ const ReviewCard = () => {
                 console.error('Error converting amount to BN:', error)
                 setAmountLamports(null)
             }
+        } else {
+            setAmountLamports(null)
         }
     }, [amount])
 
@@ -49,9 +54,13 @@ const ReviewCard = () => {
     }
 
     const handleTransfer = async () => {
-        if (!wallet || !amountLamports) return;
+        if (!wallet || !amountLamports) {
+            console.error('Wallet or amountLamports is not available', { wallet, amountLamports });
+            return;
+        }
         try {
             setIsLoading(true)
+            console.log('Initiating transfer with amount:', amountLamports.toString());
             const transactionInfo = await transferSol(amountLamports, receiver, wallet);
             setTransactionInfo(transactionInfo);
             navigate("/app/success")
@@ -70,9 +79,11 @@ const ReviewCard = () => {
         return floatValue.toFixed(9).replace(/\.?0+$/, '');
     };
 
-    if (isLoading){
+    if (isLoading) {
         return <Spinner />
     }
+
+    console.log('Rendering with amountLamports:', amountLamports ? amountLamports.toString() : 'null');
 
     return (
         <div className='dark:bg-black bg-white w-full flex flex-col min-h-screen relative'>
@@ -106,11 +117,11 @@ const ReviewCard = () => {
                                         <p className="text-lg font-bold">{privateMessage}</p>
                                     </div>
                                 )}
-                                <ResuableAlert 
-                                    variant={"warning"} 
-                                    icon={<Info size={18} />} 
-                                    description={"Please review all details carefully. This transaction cannot be reversed once confirmed."} 
-                                    title={"Attention"} 
+                                <ResuableAlert
+                                    variant={"warning"}
+                                    icon={<Info size={18} />}
+                                    description={"Please review all details carefully. This transaction cannot be reversed once confirmed."}
+                                    title={"Attention"}
                                 />
                                 <div className="flex items-center space-x-2">
                                     <Checkbox
