@@ -17,7 +17,7 @@ import { transferSol } from '@/utils/transfer-sol'
 
 import { Spinner } from './Spinner'
 import { toast } from 'sonner'
-import { BN } from 'bn.js'
+// import { BN } from 'bn.js'
 
 const ReviewCard = () => {
     const navigate = useNavigate()
@@ -51,16 +51,15 @@ const ReviewCard = () => {
     };
     const formatAmount = (value) => {
         if (!value) return '0';
-        try {
-          // Ensure value is a BN instance
-          const bnValue = BN.isBN(value) ? value : new BN(value.toString());
-          return bnValue.toString();
-        } catch (error) {
-          console.error('Error formatting amount:', error);
-          return '0';
-        }
-      };
-    if (isLoading){
+        // Ensure the value is a string and use a regular expression to remove any non-numeric characters except '.'
+        const cleanedValue = value.toString().replace(/[^\d.]/g, '');
+        // Parse the cleaned value as a float and format it to 9 decimal places
+        const formattedValue = parseFloat(cleanedValue).toFixed(9);
+        // Remove trailing zeros after the decimal point
+        return formattedValue.replace(/\.?0+$/, '');
+    };
+    console.log('Amount type:', typeof amount, 'Value:', amount);
+    if (isLoading) {
         return <Spinner />
     }
     return (
