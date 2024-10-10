@@ -31,7 +31,7 @@ const HowItWorks = () => {
                 </ul>
               </li>
               <li>
-                <strong><span className='text-2xl'>🧠</span>Zero-Knowledge Proof Generation:</strong>
+                <strong><span className='text-2xl'>🧠</span> Zero-Knowledge Proof Generation:</strong>
                 <ul className="list-disc list-inside pl-4">
                   <li>The transaction request is sent to our backend server.</li>
                   <li>Our backend, designed with privacy in mind, generates a zero-knowledge proof.</li>

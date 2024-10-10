@@ -3,6 +3,7 @@ import { Button } from './ui/button'
 import { IconEyeOff, IconLockOpen } from '@tabler/icons-react';
 import { FlipWords } from './ui/flip-words';
 import Spline from '@splinetool/react-spline';
+import { HeroVideoDialogDemo } from './HeroVideoDialog';
 
 
 const Hero = () => {
@@ -10,9 +11,9 @@ const Hero = () => {
   return (
     <div className='z-20 flex lg:flex-row sm:flex-col lg:justify-between md:justify-center items-center my-auto min-w-96 lg:mx-40 mx-6 text-left h-auto'>
       {/* <h1 className='text-7xl text-black dark:text-white justify-center items-center font-bold my-5 flex lg:flex-row md:flex-row sm:flex-row flex-wrap'>Unlock <span className='mx-3 text-[#4C3BCF]'>Trust.</span> Preserve <span className='mx-3 text-[#4C3BCF]'>Privacy.</span></h1> */}
-      <div className=''>
-        <div className="lg:justify-start sm:justify-center md:justify-start items-center  md:w-auto sm:w-auto">
-          <div className="text-7xl mx-auto font-bold text-neutral-600 dark:text-neutral-400 md:text-center lg:text-left">
+      <div className='lg:justify-start md:text-center'>
+        <div className="lg:justify-start sm:justify-center md:justify-center items-center justify-center  md:w-auto sm:w-auto">
+          <div className="text-7xl mx-auto font-bold text-neutral-600 dark:text-neutral-400 md:text-center text-left lg:text-left">
             <div className='flex flex-wrap lg:justify-start sm:justify-center md:justify-center'>
               Unlock
               <div className='lg:text-left'>
