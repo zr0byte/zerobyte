@@ -22,7 +22,7 @@ const WalletConnectionWrapper = ({ children, CONNECTION_TIMEOUT }) => {
                     )
                 ]);
                 // console.log(connection);
-                if (connected && (location.pathname === '/' || location.pathname === "/docs" || location.pathname === "/how-it-works")) {
+                if (connected && (location.pathname === '/' || location.pathname === "/docs" || location.pathname === "/how-it-works" || location.pathname === "/wallet")) {
                     navigate('/app');
                     setIsLoggedIn(true)
                 }

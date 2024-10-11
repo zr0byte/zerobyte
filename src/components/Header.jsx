@@ -31,13 +31,18 @@ const Header = ({ position }) => {
 
     const NavItems = () => (
         <>
+            <Link to="/wallet">
+                <Button variant="ghost" size="sm" className="text-neutral-600 dark:text-neutral-400">
+                    ZeroByte Wallet
+                </Button>
+            </Link>
             <Link to="/how-it-works">
-                <Button variant="ghost" size="sm" className="text-black dark:text-white">
+                <Button variant="ghost" size="sm" className="text-neutral-600 dark:text-neutral-400">
                     How it Works
                 </Button>
             </Link>
             <Link to="/docs">
-                <Button variant="ghost" size="sm" className="text-black dark:text-white">
+                <Button variant="ghost" size="sm" className="text-neutral-600 dark:text-neutral-400">
                     ZeroByte Docs
                 </Button>
             </Link>
@@ -57,7 +62,7 @@ const Header = ({ position }) => {
                     </div>
                 ) : (
                     <div className='flex items-center space-x-6' >
-                        { !connected && <NavItems />}
+                        {!connected && <NavItems />}
                         <Wallet />
                         <ModeToggle />
                     </div>

@@ -24,7 +24,7 @@ const Hero = () => {
           </div>
         </div>
         <h3 className='text-4xl lg:text-left md:text-center sm:text-center md:text-3xl text-black sm:w-full font-bold dark:text-[#4379F2]w-max bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r py-4 from-purple-500 via-violet-500 to-pink-500 '>Conduct private transactions on the blockchain with zero-knowledge proofs.</h3>
-        <div className=' text-black dark:text-white mb-5 sm:w-full lg:text-left sm:text-center md:text-center opacity-80'>
+        <div className=' text-neutral-600 dark:text-neutral-400 mb-5 sm:w-full lg:text-left sm:text-center md:text-center'>
           <p>Experience truly confidential blockchain transactions with zero-knowledge proofs. Secure your financial data, keep your identity anonymous, and transact privately without revealing details to anyone. Fast, scalable, and user-friendly—your privacy is our priority.</p>
         </div>
       </div>
