@@ -31,11 +31,11 @@ const Header = ({ position }) => {
 
     const NavItems = () => (
         <>
-            <Link to="/wallet">
+            <a href="https://wallet.0byte.tech/" target='_blank'>
                 <Button variant="ghost" size="sm" className="text-neutral-600 dark:text-neutral-400">
                     ZeroByte Wallet
                 </Button>
-            </Link>
+            </a>
             <Link to="/how-it-works">
                 <Button variant="ghost" size="sm" className="text-neutral-600 dark:text-neutral-400">
                     How it Works
