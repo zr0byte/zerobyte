@@ -49,13 +49,13 @@ If you have a feature request:
 2. Clone your forked repository to your local machine:
 
    ```bash
-   git clone https://github.com/your-username/project-name.git
+   git clone https://github.com/zr0byte/zerobyte.git
    ```
 
 3. Navigate into the project directory:
 
    ```bash
-   cd project-name
+   cd 0byte
    ```
 
 4. Install dependencies:
