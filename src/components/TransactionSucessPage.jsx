@@ -64,9 +64,9 @@ export default function TransactionSuccess() {
                         >
                             Your private transaction has been successfully processed and confirmed on the Solana blockchain.
                         </motion.p>
-                        <div className="bg-white dark:bg-black py-4 rounded-lg">
+                        <div className="bg-white dark:bg-inherit py-4 rounded-lg">
                             <p className="text-sm font-medium text-gray-500 mb-1">Transaction ID</p>
-                            <div className="flex items-center justify-between bg-white dark:bg-black border  border-gray-400 rounded p-2">
+                            <div className="flex items-center justify-between bg-white dark:bg-black/30 border border-gray-400 rounded p-2">
                                 <code className="text-sm text-black dark:text-white break-all p-1">{latestTransaction.signature}</code>
                                 <Button variant="ghost" size="sm" onClick={copyToClipboard}>
                                     {copied ? <ClipboardCheck className="h-4 w-4" /> : <Copy className="h-4 w-4" />}

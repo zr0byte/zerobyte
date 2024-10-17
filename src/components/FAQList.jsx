@@ -9,8 +9,8 @@ const FAQList = () => {
         {
           frequentlyAskedQuestions.map((faq, index) => (
             <AccordionItem key={index} value={index.toString()}>
-              <AccordionTrigger className="dark:text-white text-black text-sm">{faq.question}</AccordionTrigger>
-              <AccordionContent className="dark:text-white text-black">
+              <AccordionTrigger className="text-neutral-600 dark:text-neutral-400 text-sm">{faq.question}</AccordionTrigger>
+              <AccordionContent className="text-neutral-600 dark:text-neutral-400">
               <div dangerouslySetInnerHTML={{ __html: faq.answer.replace(/\n/g, '<br />') }} />
               </AccordionContent>
             </AccordionItem>

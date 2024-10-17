@@ -10,7 +10,7 @@ export function GlareCardDemo({ displayName, displayPic, url, position }) {
                     className="h-full w-full absolute inset-0 object-cover"
                     src={displayPic}
                 />
-                <div className="z-30 flex flex-col my-4">
+                <div className="z-30 flex flex-col w-full items-center backdrop-filter backdrop-blur-sm py-2">
                     <p className="text-white font-bold text-xl mt-4 tracking-tight">{displayName}</p>
                     <p className="text-white font-bold text-sm tracking-tight">{position}</p>
                 </div>

@@ -15,7 +15,7 @@ const Header = ({ position }) => {
 
     useEffect(() => {
         const handleResize = () => {
-            setIsMobile(window.innerWidth < 768)
+            setIsMobile(window.innerWidth < 800)
         }
 
         handleResize()
@@ -31,13 +31,18 @@ const Header = ({ position }) => {
 
     const NavItems = () => (
         <>
+            <a href="https://wallet.0byte.tech/" target='_blank'>
+                <Button variant="ghost" size="sm" className="text-neutral-600 dark:text-neutral-400">
+                    ZeroByte Wallet
+                </Button>
+            </a>
             <Link to="/how-it-works">
-                <Button variant="ghost" size="sm" className="text-black dark:text-white">
+                <Button variant="ghost" size="sm" className="text-neutral-600 dark:text-neutral-400">
                     How it Works
                 </Button>
             </Link>
             <Link to="/docs">
-                <Button variant="ghost" size="sm" className="text-black dark:text-white">
+                <Button variant="ghost" size="sm" className="text-neutral-600 dark:text-neutral-400">
                     ZeroByte Docs
                 </Button>
             </Link>
@@ -45,8 +50,8 @@ const Header = ({ position }) => {
     )
 
     return (
-        <header className="z-10 py-5 px-5 md:px-8 lg:px-16 bg-white dark:bg-black">
-            <div className="max-w-7xl mx-auto flex justify-between items-center">
+        <header className="z-10 py-5 px-5 md:px-8 lg:px-16 xl:px-16 bg-white dark:bg-black">
+            <div className="max-w-8xl mx-auto flex justify-between items-center">
                 <Logo position={position} />
 
                 {isMobile ? (
@@ -57,7 +62,7 @@ const Header = ({ position }) => {
                     </div>
                 ) : (
                     <div className='flex items-center space-x-6' >
-                        { !connected && <NavItems />}
+                        {!connected && <NavItems />}
                         <Wallet />
                         <ModeToggle />
                     </div>

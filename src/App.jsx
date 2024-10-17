@@ -8,6 +8,7 @@ import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
 import { Toaster } from "sonner";
 import { ThemeProvider } from "./components/theme-provider.jsx";
 import WalletConnectionWrapper from "./components/WalletConnectionWrapper.jsx";
+import { NotFound } from "./components/NotFound.jsx";
 import '@solana/wallet-adapter-react-ui/styles.css';
 import './components/custom-wallet-modal.css';
 import { Spinner } from "./components/Spinner.jsx";
@@ -15,6 +16,7 @@ import "./global.js"
 
 // Lazy-loaded components
 const HomePage = lazy(() => import("./components/HomePage.jsx"));
+const WalletPage = lazy(() => import("./components/WalletPage.jsx"));
 const Features = lazy(() => import("./components/Features.jsx"));
 const HowItWorks = lazy(() => import("./components/HowItWorks.jsx"));
 const Docs = lazy(() => import("./components/Docs.jsx"));
@@ -22,7 +24,6 @@ const Dashboard = lazy(() => import("./components/Dashboard.jsx"));
 const NewTransaction = lazy(() => import("./components/NewTransaction.jsx"));
 const ZKPGenerateView = lazy(() => import("./components/ZKPGenerateView.jsx"));
 const ReviewCard = lazy(() => import("./components/ReviewCard.jsx"));
-const NotFound = lazy(() => import("./components/NotFound.jsx"));
 const ProofOfFunds = lazy(() => import("./components/ProofOfFunds.jsx"))
 const TransactionSucessPage = lazy(() => import("./components/TransactionSucessPage.jsx"))
 const TransactionErrorPage = lazy(() => import("./components/TransactionErrorPage.jsx"))
@@ -62,6 +63,7 @@ const AppRoutes = () => {
       <Suspense fallback={<Spinner />}>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/wallet" element={<WalletPage />} />
           <Route path="/features" element={<Features />} />
           <Route path="/how-it-works" element={<HowItWorks />} />
           {/* <Route path="/pricing" element={<Pricing />} /> */}

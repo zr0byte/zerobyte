@@ -83,7 +83,7 @@ const TransactionMake = () => {
     };
     const isEmpty = !amount || !receiver // to check if the fields are empty or not
     return (
-        <div className='w-full my-5'>
+        <div className='w-full my-5 min-h-screen'>
             <Card>
                 <CardHeader>
                     <CardTitle>

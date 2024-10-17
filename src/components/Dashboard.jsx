@@ -8,6 +8,7 @@ import { Footer } from './Footer';
 import { Button } from './ui/button';
 import TransactionView from './TransactionView';
 import Header from './Header';
+import { Separator } from './ui/separator';
 
 const Dashboard = ({ CONNECTION_TIMEOUT }) => {
     const { publicKey, connected } = useWallet();
@@ -72,10 +73,11 @@ const Dashboard = ({ CONNECTION_TIMEOUT }) => {
             <div className='z-10 sticky top-0 bg-white/30 dark:bg-black/30 backdrop-blur-md'>
                 <Header position={"bottom"} />
             </div>
+            {/* <Separator className="fixed top-[88px]" /> */}
             <div className='lg:px-60 w-full sm:px-5 h-screen flex flex-col justify-start items-center mt-20'>
                 <div className='lg:w-[60vw] md:w-[80vw] w-[90vw]'>
-                    <h1 className='text-black dark:text-white text-5xl font-bold'>Welcome to Your Private Dashboard</h1>
-                    <h3 className='text-black dark:text-white pt-4'>Experience the magic of your first private transaction!</h3>
+                    <h1 className='text-neutral-600 dark:text-neutral-400 text-5xl font-bold'>Welcome to Your Private Dashboard</h1>
+                    <h3 className='text-neutral-600 dark:text-neutral-400 pt-4'>Experience the magic of your first private transaction!</h3>
                     {/* <BalanceCard /> */}
                     <Button className="w-full my-5" onClick={handleClick}>
                         New Private Transfer <ArrowRight className='ml-3' size={20} />
