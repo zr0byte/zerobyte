@@ -55,7 +55,7 @@ const HowItWorks = () => {
         </div>
         <PhotoProvider>
 
-          <div className='h-full w-full flex justify-center mt-8 px-4'>
+          <div className='h-full w-full flex justify-center my-8 px-4'>
             <PhotoView src={flowChart}>
               <img src={flowChart} alt="Flow Chart" className='rounded-lg cursor-pointer' />
             </PhotoView>

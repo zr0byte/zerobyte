@@ -11,7 +11,7 @@ import {
 export function CanvasRevealEffectDemo() {
   return (<>
     <div
-      className="py-20 flex flex-col lg:flex-row items-center justify-center bg-white dark:bg-black w-full gap-4 mx-auto px-8">
+      className="py-20 flex flex-col lg:flex-row items-center justify-center bg-white dark:bg-black w-full xl:w-[80vw] gap-4 mx-auto px-8">
       <Card title="" icon={<IconPassword size={54} />} extra={"With zero-knowledge proofs, your transactions stay anonymous and your identity remains secure. Control your data, and never compromise your privacy in the decentralized world."}>
         <CanvasRevealEffect animationSpeed={5.1} containerClassName="bg-emerald-900" />
       </Card>

@@ -116,7 +116,7 @@ const ZKPGenerateCard = ({ title, loadingText, successText, succesMsg, alertModa
     const isSuccess = proofResponse && proofResponse.status_code === 200;
     // console.log("Response", proofResponse, proofError, showResult);
     return (
-        <div className='w-full my-5'>
+        <div className='w-full my-5 h-screen'>
             <Card>
                 <CardHeader>
                     <CardTitle className="text-2xl font-bold">{title}</CardTitle>

@@ -15,7 +15,7 @@ const Header = ({ position }) => {
 
     useEffect(() => {
         const handleResize = () => {
-            setIsMobile(window.innerWidth < 768)
+            setIsMobile(window.innerWidth < 800)
         }
 
         handleResize()
@@ -50,8 +50,8 @@ const Header = ({ position }) => {
     )
 
     return (
-        <header className="z-10 py-5 px-5 md:px-8 lg:px-16 bg-white dark:bg-black">
-            <div className="max-w-7xl mx-auto flex justify-between items-center">
+        <header className="z-10 py-5 px-5 md:px-8 lg:px-16 xl:px-16 bg-white dark:bg-black">
+            <div className="max-w-8xl mx-auto flex justify-between items-center">
                 <Logo position={position} />
 
                 {isMobile ? (
