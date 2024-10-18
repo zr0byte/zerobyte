@@ -9,7 +9,7 @@ import { HeroVideoDialogDemo } from './HeroVideoDialog';
 const Hero = () => {
   const words = ["Trust", "Privacy", "Security", "", "Freedom", "Shield"];
   return (
-    <div className='z-20 flex lg:flex-row sm:flex-col lg:justify-between md:justify-center items-center my-auto min-w-96 lg:mx-40 xl:mx-60 xl:mx-24 mx-6 text-left h-auto'>
+    <div className='z-20 flex lg:flex-row sm:flex-col lg:justify-between md:justify-center items-center my-auto min-w-96 lg:mx-40  2xl:mx-64 mx-6 text-left h-auto'>
       {/* <h1 className='text-7xl text-black dark:text-white justify-center items-center font-bold my-5 flex lg:flex-row md:flex-row sm:flex-row flex-wrap'>Unlock <span className='mx-3 text-[#4C3BCF]'>Trust.</span> Preserve <span className='mx-3 text-[#4C3BCF]'>Privacy.</span></h1> */}
       <div className='lg:justify-start md:text-center'>
         <div className="lg:justify-start sm:justify-center md:justify-center items-center justify-center md:w-auto sm:w-auto">
