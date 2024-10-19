@@ -25,6 +25,11 @@ const SideBar = () => {
                     <SheetDescription>
                         {
                             !connected && <div className='flex flex-col'>
+                                <a href="https://wallet.0byte.tech/" target='_blank'>
+                                    <Button variant="ghost" size="sm" className="text-black dark:text-white w-full">
+                                        ZeroByte Wallet
+                                    </Button>
+                                </a>
                                 <Link to="/how-it-works">
                                     <Button variant="ghost" size="sm" className="text-black dark:text-white w-full">
                                         How it Works
