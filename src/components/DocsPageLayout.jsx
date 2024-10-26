@@ -73,7 +73,7 @@ const DocsPageLayout = () => {
     );
 
     return (
-        <div className="min-h-screen bg-background text-foreground px-4">
+        <div className="min-h-screen flex flex-col bg-background text-foreground px-4">
             {/* Mobile/Tablet Navigation at Top */}
             <div className="lg:hidden px-4 overflow-x-auto no-scrollbar">
                 <ScrollArea className="w-full">

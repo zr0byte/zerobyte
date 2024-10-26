@@ -27,7 +27,7 @@ const Docs = () => {
             <Header position={"top"}/>
             <div className='mx-60 md:mx-28 flex justify-center items-center'>
                 {/* <h1 className='text-black dark:text-white mt-auto text-6xl font-bold'>Docs</h1> */}
-                <div className='w-[100vw] mt-10'>
+                <div className='w-[97vw] mt-10'>
                     <DocsPageLayout />
                 </div>
             </div>
