@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-
 import { cn } from '@/lib/utils';
 import { ScrollArea } from './ui/scroll-area';
 import { Button } from './ui/button';
 
-// Later on we will separate out the data
 const menuItems = [
     { id: 'introduction', label: 'Introduction' },
     { id: 'getting-started', label: 'Getting Started' },
@@ -16,80 +14,95 @@ const menuItems = [
 const content = {
     introduction: (
         <>
-            <h1 className="text-3xl font-bold mb-4 text-black dark:text-white">Introduction to Our Privacy-Preserving DeFi Protocol</h1>
-            <p className="mb-4 text-black dark:text-white">Welcome to the documentation for our cutting-edge privacy-preserving DeFi protocol built on Solana. This protocol leverages zero-knowledge proofs and layer-2 solutions to provide secure, private transactions while maintaining compliance with regulations.</p>
-            <h2 className="text-2xl font-semibold mb-2 text-black dark:text-white">Key Features</h2>
+            <h1 className="text-3xl font-bold mb-4 text-black dark:text-white">Introduction to 0byte</h1>
+            <p className="mb-4 text-black dark:text-white">Welcome to 0byte, a revolutionary privacy-focused platform built on the Solana blockchain. We enable users to conduct completely private and anonymous transactions while leveraging Solana's lightning-fast performance and low transaction costs.</p>
+            <h2 className="text-2xl font-semibold mb-2 text-black dark:text-white">Overview</h2>
+            <p className='mb-4 text-black dark:text-white'>
+                0byte is designed with a singular focus: to provide complete transactional privacy without compromising on speed or security. By utilizing advanced zero-knowledge proof technology, we ensure that your transaction details remain completely confidential while still maintaining the integrity and verifiability of the Solana blockchain.
+            </p>
             <ul className="list-disc pl-6 mb-4 text-black dark:text-white">
-                <li>Zero-knowledge proofs for transaction privacy</li>
-                <li>Layer-2 scaling solution for improved performance</li>
-                <li>Compliance framework for selective disclosure</li>
-                <li>Interoperability with existing DeFi protocols</li>
+                <li><span className='font-bold'>Complete Transaction Privacy: </span> Leverage zero-knowledge proofs to keep your transaction details private and anonymous on-chain</li>
+                <li><span className='font-bold'>Lightning Fast Performance: </span> Built on Solana to provide near-instantaneous transaction finality</li>
+                <li><span className='font-bold'>User Anonymity: </span> Protect your identity while conducting transactions on the blockchain</li>
+                <li><span className='font-bold'>Seamless Integration: </span> Easy-to-use platform for conducting private transactions</li>
             </ul>
+            <h2 className="text-2xl font-semibold mb-2 text-black dark:text-white">Why 0byte?</h2>
+            <p className='mb-4 text-black dark:text-white'>
+                In an era where blockchain transactions are inherently transparent, 0byte provides a crucial layer of privacy for users who want to maintain confidentiality in their financial transactions. Whether you're an individual user or an institution, 0byte offers the tools you need to conduct transactions privately and securely on the Solana blockchain.
+            </p>
         </>
     ),
     'getting-started': (
         <>
             <h1 className="text-3xl font-bold mb-4 text-black dark:text-white">Getting Started</h1>
-            <p className="mb-4 text-black dark:text-white">Follow these steps to start using our privacy-preserving DeFi protocol:</p>
+            <p className="mb-4 text-black dark:text-white">To begin using 0byte for private transactions, explore our documentation to understand how to:</p>
             <ol className="list-decimal pl-6 mb-4 text-black dark:text-white">
                 <li className="mb-2">Set up a Solana wallet</li>
-                <li className="mb-2">Acquire some SOL tokens</li>
-                <li className="mb-2">Connect your wallet to our web application</li>
-                <li className="mb-2">Generate your privacy keys</li>
+                <li className="mb-2">Enter receiver's details such as wallet address, SOL to send</li>
+                <li className="mb-2">Generate Zero-knowledge proofs of your sufficient funds, without revealing your balances</li>
+                <li className="mb-2">Review the transactional details as the transaction is irreversible</li>
                 <li className="mb-2">Make your first private transaction</li>
             </ol>
-            <p className='text-black dark:text-white'>For more detailed instructions, please refer to our user guide.</p>
+            <p className='text-black dark:text-white'>For more detailed instructions, please refer to our <a href="https://github.com/zr0byte/zerobyte/" target='_blank' className="text-blue-500 hover:text-blue-600 underline">Github</a></p>
         </>
     ),
-    // Add more content for other sections as needed
 };
 
 const DocsPageLayout = () => {
     const [activeItem, setActiveItem] = useState(menuItems[0].id);
 
-    const Sidebar = () => (
-        <ScrollArea className="h-full py-6 pl-4 pr-6">
-            {/* <h2 className="mb-4 text-lg font-semibold text-black dark:text-white">Documentation</h2> */}
-            <nav>
-                <ul className="space-y-2">
-                    {menuItems.map((item) => (
-                        <li key={item.id}>
-                            <Button
-                                variant="link"
-                                className={cn(
-                                    "w-full justify-start text-black dark:text-white",
-                                    activeItem === item.id ? "opacity-100" : "opacity-30"
-                                )}
-                                onClick={() => setActiveItem(item.id)}
-                            >
-                                {item.label}
-                            </Button>
-                        </li>
-                    ))}
-                </ul>
-            </nav>
-        </ScrollArea>
+    const Navigation = () => (
+        <nav className="py-4">
+            <ul className="flex flex-row lg:flex-col space-x-2 lg:space-x-0 lg:space-y-2 overflow-x-auto">
+                {menuItems.map((item) => (
+                    <li key={item.id} className="flex-shrink-0">
+                        <Button
+                            variant="link"
+                            className={cn(
+                                "whitespace-nowrap justify-start text-black dark:text-white",
+                                activeItem === item.id ? "opacity-100" : "opacity-30"
+                            )}
+                            onClick={() => setActiveItem(item.id)}
+                        >
+                            {item.label}
+                        </Button>
+                    </li>
+                ))}
+            </ul>
+        </nav>
     );
 
     return (
-        <div className="flex min-h-screen bg-background text-foreground pr-4">
-            {/* Sidebar */}
-            <div className="lg:w-64">
-                <Sidebar />
+        <div className="min-h-screen bg-background text-foreground px-4">
+            {/* Mobile/Tablet Navigation at Top */}
+            <div className="lg:hidden px-4 overflow-x-auto no-scrollbar">
+                <ScrollArea className="w-full">
+                    <Navigation />
+                </ScrollArea>
             </div>
 
-            {/* Main content */}
-            <main className="flex-1 overflow-auto lg:w-0 w-[90vw]">
-                <ScrollArea className="h-full">
-                    <div className="container py-6 px-4">
-                        {content[activeItem] || (
-                            <p className="text-black dark:text-white">
-                                Content for this section is coming soon.
-                            </p>
-                        )}
-                    </div>
-                </ScrollArea>
-            </main>
+            {/* Desktop Layout */}
+            <div className="flex">
+                {/* Desktop Sidebar */}
+                <div className="hidden lg:block w-64 pl-4">
+                    <ScrollArea className="h-full py-6 pr-6">
+                        <Navigation />
+                    </ScrollArea>
+                </div>
+
+                {/* Main content */}
+                <main className="flex-1 overflow-auto w-full lg:w-0">
+                    <ScrollArea className="h-full">
+                        <div className="container py-6 px-4">
+                            {content[activeItem] || (
+                                <p className="text-black dark:text-white">
+                                    Content for this section is coming soon.
+                                </p>
+                            )}
+                        </div>
+                    </ScrollArea>
+                </main>
+            </div>
         </div>
     );
 };
