@@ -30,6 +30,11 @@ const SideBar = () => {
                                         ZeroByte Wallet
                                     </Button>
                                 </a>
+                                <Link to="/roadmap">
+                                    <Button variant="ghost" size="sm" className="text-black dark:text-white w-full">
+                                        Roadmap
+                                    </Button>
+                                </Link>
                                 <Link to="/how-it-works">
                                     <Button variant="ghost" size="sm" className="text-black dark:text-white w-full">
                                         How it Works

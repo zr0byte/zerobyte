@@ -27,6 +27,7 @@ const ReviewCard = lazy(() => import("./components/ReviewCard.jsx"));
 const ProofOfFunds = lazy(() => import("./components/ProofOfFunds.jsx"))
 const TransactionSucessPage = lazy(() => import("./components/TransactionSucessPage.jsx"))
 const TransactionErrorPage = lazy(() => import("./components/TransactionErrorPage.jsx"))
+const Roadmap = lazy(() => import("./components/Roadmap.jsx"));
 
 
 const CONNECTION_TIMEOUT = 15000; // 15 seconds timeout
@@ -66,6 +67,7 @@ const AppRoutes = () => {
           <Route path="/wallet" element={<WalletPage />} />
           <Route path="/features" element={<Features />} />
           <Route path="/how-it-works" element={<HowItWorks />} />
+          <Route path="/roadmap" element={<Roadmap />} />
           {/* <Route path="/pricing" element={<Pricing />} /> */}
           <Route path="/docs" element={<Docs />} />
           <Route path="/app" element={<ProtectedRoute><Dashboard CONNECTION_TIMEOUT={CONNECTION_TIMEOUT} /></ProtectedRoute>} />

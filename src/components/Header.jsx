@@ -15,7 +15,7 @@ const Header = ({ position }) => {
 
     useEffect(() => {
         const handleResize = () => {
-            setIsMobile(window.innerWidth < 800)
+            setIsMobile(window.innerWidth < 900)
         }
 
         handleResize()
@@ -23,10 +23,6 @@ const Header = ({ position }) => {
 
         return () => window.removeEventListener('resize', handleResize)
     }, [])
-
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen)
-    }
 
 
     const NavItems = () => (
@@ -36,6 +32,11 @@ const Header = ({ position }) => {
                     ZeroByte Wallet
                 </Button>
             </a>
+            <Link to="/roadmap">
+                <Button variant="ghost" size="sm" className="text-neutral-600 dark:text-neutral-400">
+                    Roadmap
+                </Button>
+            </Link>
             <Link to="/how-it-works">
                 <Button variant="ghost" size="sm" className="text-neutral-600 dark:text-neutral-400">
                     How it Works
@@ -71,8 +72,6 @@ const Header = ({ position }) => {
 
             {isMobile && isMenuOpen && (
                 <NavItems />
-                // <div className={cn("h-screen bg-[0 0% 9%] z-auto ml-60 flex flex-col items-end space-x-6 my-4", !isMobile && "hidden")}>
-                // </div>
             )}
         </header>
     )
