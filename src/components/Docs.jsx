@@ -19,9 +19,6 @@ const Docs = () => {
         return () => window.removeEventListener('resize', handleResize)
     }, [])
 
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen)
-    }
     return (
         <div className='dark:bg-black bg-white w-full flex flex-col min-h-screen'>
             <Header position={"top"}/>
