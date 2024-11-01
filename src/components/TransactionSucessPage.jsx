@@ -42,7 +42,7 @@ export default function TransactionSuccess() {
             <div className='z-10 sticky top-0 bg-white/30 dark:bg-black/30 backdrop-blur-md'>
                 <Header />
             </div>
-            <div className='px-60 h-screen flex flex-col justify-start items-center mt-20'>
+            <div className='lg:px-60 w-full sm:px-5 h-screen flex flex-col justify-start items-center mt-20'>
                 <Card className="lg:w-[60vw] md:w-[80vw] w-[90vw]">
                     <CardHeader>
                         <CardTitle className="text-2xl font-bold text-center">Transaction Successful</CardTitle>
