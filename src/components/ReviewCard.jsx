@@ -92,7 +92,7 @@ const ReviewCard = () => {
             <div className='z-10 sticky top-0 bg-white/30 dark:bg-black/30 backdrop-blur-md'>
                 <Header />
             </div>
-            <div className='px-60 h-screen flex flex-col justify-start items-center mt-20'>
+            <div className='lg:px-60 w-full sm:px-5 h-screen flex flex-col justify-start items-center mt-20'>
                 <div className='lg:w-[60vw] md:w-[80vw] w-[90vw]'>
                     <Button variant={"ghost"} size={"sm"} className="text-black dark:text-white group pl-1" onClick={handleClick}>
                         <ChevronLeft size={18} className='' />Back
