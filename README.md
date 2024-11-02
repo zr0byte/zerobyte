@@ -1,4 +1,4 @@
-<img src="https://pbs.twimg.com/profile_images/1837450642689839105/MNZA-W7J_400x400.jpg" style="width: 200px;"></img><img src="https://pbs.twimg.com/profile_images/1837450642689839105/MNZA-W7J_400x400.jpg" style="width: 200px;"></img><img src="https://pbs.twimg.com/profile_images/1837450642689839105/MNZA-W7J_400x400.jpg" style="width: 200px;"></img><img src="https://pbs.twimg.com/profile_images/1837450642689839105/MNZA-W7J_400x400.jpg" style="width: 200px;"></img>
+<img src="https://pbs.twimg.com/profile_images/1837450642689839105/MNZA-W7J_400x400.jpg" style="width: 200px;"></img>
 # ZeroByte | Pioneering Private Transfers on Solana
 
 ## Overview
