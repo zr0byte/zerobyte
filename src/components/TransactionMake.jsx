@@ -19,7 +19,7 @@ import { toast } from 'sonner'
 const MAX_DECIMALS = 9;
 const TransactionMake = () => {
     const navigate = useNavigate()
-    const { publicKey } = useWallet()   
+    const { publicKey } = useWallet()
     const [sender, setSender] = useAtom(senderAtom)
     const [amount, setAmount] = useAtom(amountAtom)
     const [receiver, setReceiver] = useAtom(receiverAtom)
@@ -91,16 +91,18 @@ const TransactionMake = () => {
                     </CardTitle>
                 </CardHeader>
                 <CardContent className="flex flex-col">
-                    <div className="grid w-full max-w-full items-center gap-1.5">
-                        <Label htmlFor="email">Amount to send (SOL)</Label>
-                        <Input
-                            type="text"
-                            id="amount"
-                            placeholder="0.00"
-                            onChange={handleAmountChange}
-                            value={amount}
-                        />
-                        <div className="space-y-2">
+                    <div className="grid w-full max-w-full items-center gap-3">
+                        <div>
+                            <Label htmlFor="email">Amount to send (SOL)</Label>
+                            <Input
+                                type="text"
+                                id="amount"
+                                placeholder="0.00"
+                                onChange={handleAmountChange}
+                                value={amount}
+                            />
+                        </div>
+                        <div>
                             <Label htmlFor="receiver">Receiver's Public Address</Label>
                             <Input
                                 type="text"
