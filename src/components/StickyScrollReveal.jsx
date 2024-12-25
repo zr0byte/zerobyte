@@ -88,7 +88,7 @@ const content = [
 
 export function StickyScrollRevealDemo() {
     return (
-        <div className="p-10">
+        <div className="p-10 w-full">
             <StickyScroll content={content} />
         </div>
     );
