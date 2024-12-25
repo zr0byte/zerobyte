@@ -6,7 +6,7 @@ const OurTeam = () => {
     <div className='lg:h-[90vh] 2xl:h-[80vh] md:h-[70vh] h-auto z-20 flex flex-col w-full bg-white dark:bg-black'>
       <div className='w-full max-w-7xl mx-auto md:pt-20 px-8'>
         <h1 className='text-neutral-600 dark:text-neutral-400 text-6xl font-bold p-8 text-left md:text-center sm:text-center'>
-          Our team
+          Our Team
         </h1>
         <div className='flex lg:flex-row md:flex-row gap-10 mt-10 flex-col items-center justify-center'>
           <GlareCardDemo
